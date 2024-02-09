@@ -1,0 +1,36 @@
+/* Reset default browser styles for ul and li */
+
+
+.myUL ul{
+
+
+  background-color: transparent;
+}
+.myUL,
+.myUL li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style for each lawyer item */
+.myUL {
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Display items vertically */
+  width: 200px;
+}
+
+.myUL li {
+  border: 1px solid #ddd;
+  background-color: #f6f6f6;
+  margin-bottom: 10px;
+  padding: 12px;
+}
+
+/* Style for lawyer image */
+.myUL li img {
+  border-radius: 50%;
+  width: 50px; /* Set the desired width */
+  height: 50px; /* Set the desired height */
+  margin-right: 10px;
+}

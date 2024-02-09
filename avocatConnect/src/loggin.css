@@ -1,0 +1,64 @@
+
+
+
+ 
+#root{ --main-color: #679186;
+    --first-color:#f9b4ab;
+    --sec-color:#264e70;
+    --third-color:#bbd4ce;
+    --a-color:#c0d0cc;
+
+    }
+
+   
+
+
+  .heart1,.heart2,.heart3 {
+   
+    --c: #679186;
+    width: 27px;
+   
+    border-color:#679186;
+    aspect-ratio: 1;
+    background:
+     /* 1 */ radial-gradient(circle at 60% 65%,var(--c) 64%,#0000 65%) top left/50% 50%,
+     /* 2 */ radial-gradient(circle at 40% 65%,var(--c) 64%,#0000 65%) top right/50% 50%,
+     /* 3 */ conic-gradient(from -45deg at 50% 85.5%,var(--c) 90deg,#0000 0) bottom/100% 50%;
+    background-repeat: no-repeat;
+    margin: 25px;
+    float: left;
+
+
+
+  }
+
+
+  .hearting{
+
+
+    display: flex;
+  }
+
+
+  .heart1 {
+    animation: jump 1.9s -0.32s linear infinite;
+   
+  }
+  .heart2 {
+      animation: jump 1.9s -0.16s linear infinite;
+     
+  }
+  .heart3 {
+      animation: jump 1.9s linear infinite;
+     
+  }
+  
+  @keyframes jump {
+    0%, 80%, 100% { 
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    } 40% { 
+      -webkit-transform: scale(2.0);
+      transform: scale(2.0);
+    }
+  }
