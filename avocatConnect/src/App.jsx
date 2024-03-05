@@ -16,6 +16,7 @@ import Searchforlawyers from './searchforlawyers';
 import LawyerProfile from './lawyerprofile'
 import AskingPlace from './Askingplace';
 import Feed from './Feed';
+import Forum from './forum';
 function App() {
 
   return (
@@ -37,6 +38,7 @@ function App() {
       <Route path="/loginlawyer" exact element={<Loginlawyer/>} />
 
       <Route path="/lawyers/:id" element={<LawyerProfile />} />
+      <Route path="/feed/:id" element={<Forum />} />
 
 
 

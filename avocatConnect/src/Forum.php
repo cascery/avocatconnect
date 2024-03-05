@@ -14,15 +14,15 @@ if ($conn->connect_error) {
     die(json_encode(["success" => false, "error" => "Connection failed: " . $conn->connect_error]));
 }
 
-$query = "SELECT * FROM question";
+$query = "SELECT * FROM comments";
 $result = $conn->query($query);
 
 if ($result) {
-    $questions = [];
+    $comments = [];
     while ($row = $result->fetch_assoc()) {
-        $questions[] = $row;
+        $comments[] = $row;
     }
-    echo json_encode(["success" => true, "questions" => $questions]);
+    echo json_encode(["success" => true, "comments" => $comments]);
 } else {
     echo json_encode(["success" => false, "error" => $conn->error]);
 }

@@ -9,8 +9,8 @@
 
 .container {
    
-	width: 700px;
-	height: 700px;
+	width: fit-content;
+	height: fit-content;
 	 display: flex;
 	 justify-content: center;
 	 align-items: center;
@@ -43,7 +43,7 @@
     padding-bottom: 0rem;
     border-radius: 8px;
 	width: 350px;
-   height: 350px;
+   height: fit-content;
   
   
 }
@@ -218,7 +218,7 @@ body {
 }
 .form-v10-content .form-detail select,
 .form-v10-content .form-detail input {
-	width: 100%;
+	width: fit-content;
     padding: 11.5px 15px 15px 15px;
     border: 1px solid transparent;
     background: transparent;

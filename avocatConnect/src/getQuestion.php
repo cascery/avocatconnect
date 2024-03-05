@@ -1,7 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
-header("Access-Control-Allow-Methods: GET, OPTIONS");
+header("Access-Control-Allow-Methods: GET");
 
 $host = 'localhost';
 $username = 'root';
@@ -14,15 +14,22 @@ if ($conn->connect_error) {
     die(json_encode(["success" => false, "error" => "Connection failed: " . $conn->connect_error]));
 }
 
-$query = "SELECT * FROM question";
+$questionId = $_GET['id'] ?? '';
+
+
+if (empty($questionId)) {
+    die(json_encode(["success" => false, "error" => "Question ID is required"]));
+}
+$query = "SELECT * FROM question WHERE forumID = $questionId";
 $result = $conn->query($query);
 
 if ($result) {
-    $questions = [];
-    while ($row = $result->fetch_assoc()) {
-        $questions[] = $row;
+    if ($result->num_rows > 0) {
+        $question = $result->fetch_assoc();
+        echo json_encode(["success" => true, "question" => $question]);
+    } else {
+        echo json_encode(["success" => false, "error" => "Question not found"]);
     }
-    echo json_encode(["success" => true, "questions" => $questions]);
 } else {
     echo json_encode(["success" => false, "error" => $conn->error]);
 }

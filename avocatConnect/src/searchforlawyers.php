@@ -21,7 +21,7 @@ if (empty($searchQuery)) {
 }
 
 $searchParam = '%' . $conn->real_escape_string($searchQuery) . '%';
-$query = "SELECT * FROM avocat WHERE nom LIKE ?";
+$query = "SELECT * lawyer WHERE nom LIKE ?";
 
 $stmt = $conn->prepare($query);
 

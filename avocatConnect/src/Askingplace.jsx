@@ -5,6 +5,10 @@ import 'react-quill/dist/quill.snow.css';
 import './askingplace.css';
 
 const AskingPlace = () => {
+
+
+  const clientID =  localStorage.getItem('clientId');
+  console.log("yo this is the id ",clientID);
   const editorStyle = {
     height: '300px',
     width:'700px', // Set the height as needed
@@ -26,13 +30,17 @@ const AskingPlace = () => {
     setContent(value);
   };
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
       formData.append('title', title);
       formData.append('content', content);
-      formData.append('clientId', 10); // Replace with actual client ID
+
+
+      formData.append('clientId', clientID); // Replace with actual client ID
 
       const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/askingplace.php', {
         method: 'POST',

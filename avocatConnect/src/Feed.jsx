@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import './feed.css'
+import { Link } from 'react-router-dom'; // Import Link from React Router
+import './feed.css';
+
 const Feed = () => {
     // State to store questions
     const [questions, setQuestions] = useState([]);
@@ -27,18 +29,16 @@ const Feed = () => {
 
     return (
         <div>
-          
-          
             {questions.map(question => (
                 <div key={question.id} className='box'>
                     <div className='card'>
-    
-                    <h3>{question.title}</h3>
-                    <h4>{question.client_username}</h4>
-                    <p>{question.content}</p>
-                  
-                       </div>  
-                         </div>
+                        <Link to={`/feed/${question.forumID}`}>
+                            <h3>{question.title}</h3>
+                        </Link>
+                        <h4>{question.client_username}</h4>
+                        <p>{question.content}</p>
+                    </div>
+                </div>
             ))}
         </div>
     );

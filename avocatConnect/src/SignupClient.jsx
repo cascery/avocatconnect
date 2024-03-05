@@ -28,11 +28,12 @@ const FirstPage = () => {
   const [username, setusername] = useState('');
   const [wilaya, setwilaya] = useState('');
   const [phone, setphone] = useState('');
-  
+  const navigate = useNavigate();
+
 
   const handleFormSubmit = (event) => {
     event.preventDefault(); // Prevent default form submission
-
+    const userType='client';
     const formData = new FormData();
     formData.append('email', email);
     formData.append('password', password);
@@ -51,7 +52,11 @@ const FirstPage = () => {
       .then((responseData) => {
         console.log('Response:', responseData);
         if (responseData.success) {
-         console.log("yaaay");
+          document.cookie = `Id=${responseData.userID}; path=/;`;
+          // Set userType in cookie
+          document.cookie = `userType=${userType}; path=/;`;
+         navigate('/feed');
+         
         
         } else {
           alert('Signup failed!');
@@ -67,7 +72,7 @@ const FirstPage = () => {
 
 <div className='lmao'>
 <div className='titleholder'>
-<div className='titlediv'> <h1>SIGN UP AS A CLIENT</h1></div>
+<div className='titlediv'> <h4>SIGN UP AS A CLIENT</h4></div>
 
 </div>
 

@@ -21,7 +21,7 @@ if (empty($searchQuery)) {
     die(json_encode(["success" => false, "error" => "Search query cannot be empty"]));
 }
 
-$query = "SELECT * FROM avocat WHERE id = $searchQuery";
+$query = "SELECT * FROM lawyer WHERE id = $searchQuery";
 $result = $conn->query($query);
 
 if ($result) {

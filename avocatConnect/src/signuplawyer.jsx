@@ -2,6 +2,7 @@
 import React from 'react';
 import { useState,useEffect  } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import './style.css'
   const algerianCities = [
     'Adrar', 'Aflou', 'Aïn Beïda', 'Aïn Defla', 'Aïn Témouchent', 'Algiers', 'Annaba', 'Barika', 'Batna',
@@ -41,6 +42,7 @@ import './style.css'
 
 
 const Signuplawyer = () => {
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [years, setyears] = useState('');
@@ -58,7 +60,6 @@ const Signuplawyer = () => {
 const [selectedSpecialty, setSelectedSpecialty] = useState('');
 
   
-const dr="Droit rural";
   const handleFormSubmit = (event) => {
     event.preventDefault(); // Prevent default form submission
 
@@ -82,9 +83,14 @@ const dr="Droit rural";
     })
       .then((response) => response.json())
       .then((responseData) => {
-        console.log('Response:', responseData);
         if (responseData.success) {
-         console.log("yaaay");
+          navigate('/feed');
+
+          // Save user information in cookies
+          console.log(responseData.userID);
+
+          document.cookie = `userID=${responseData.userID}; path=/`;
+          document.cookie = `userType=lawyer; path=/`;
         
         } else {
           alert('Signup failed!');
@@ -100,7 +106,7 @@ const dr="Droit rural";
 
 <div className='lmao'>
 <div className='titleholder'>
-<div className='titlediv'> <h1>SIGN UP AS A LAWYER</h1></div>
+<div className='titlediv'> <h4>SIGN UP AS A LAWYER</h4></div>
 
 </div>
 
@@ -171,21 +177,19 @@ const dr="Droit rural";
             </div>
 
             <div className="form-row">
-      <select id="specialite"
-       name="specialite"
-       value={selectedSpecialty}
-       onChange={(e) => setSelectedSpecialty(e.target.value)}
-      
-      
-      
-      >
-        <option value="" disabled selected>specialite</option>
-        {lawyerSpecialties.map((spes, index) => (
-          <option key={index} value={spes}>{spes}</option>
-        ))}
-      </select>
-    
-            </div>
+  <select
+    id="specialite"
+    name="specialite"
+    value={selectedSpecialty}
+    onChange={(e) => setSelectedSpecialty(e.target.value)}
+  >
+    <option value="" disabled selected>specialite</option>
+    {lawyerSpecialties.map((spes, index) => (
+      <option key={index} value={index}>{spes}</option>
+    ))}
+  </select>
+  {console.log(selectedSpecialty)}
+</div>
 
 
             <div className="form-row">

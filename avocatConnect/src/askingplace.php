@@ -14,12 +14,13 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$title = $_POST['title'] ?? '';
-$content = strip_tags($_POST['content']);
-$clientId = $_POST['clientId'] ?? '';
+// Sanitize and escape user input
+$title = $conn->real_escape_string($_POST['title'] ?? '');
+$content = $conn->real_escape_string(strip_tags($_POST['content']));
+$clientId = $conn->real_escape_string($_POST['clientId'] ?? '');
 
-$query = 'INSERT INTO askingplace (clientID, title, content)
-          VALUES ("$clientId", "$title", "$content")';
+$query = "INSERT INTO question (clientID, title, content)
+          VALUES ('$clientId', '$title', '$content')";
 
 if ($conn->query($query) === TRUE) {
     echo json_encode(["success" => true]);

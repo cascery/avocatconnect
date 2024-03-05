@@ -54,7 +54,7 @@ function Navbar() {
   <SearchResults results={results} />
   </div>
   </div>
- {/* Pass 'results' state to SearchResults component */}
+
   </div>
 </div>
 
