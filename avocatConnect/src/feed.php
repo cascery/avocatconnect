@@ -14,7 +14,8 @@ if ($conn->connect_error) {
     die(json_encode(["success" => false, "error" => "Connection failed: " . $conn->connect_error]));
 }
 
-$query = "SELECT * FROM question";
+// Query to get questions with user information
+$query = "SELECT q.*, u.username, u.profilePic FROM question q JOIN user u ON q.userID = u.userID";
 $result = $conn->query($query);
 
 if ($result) {

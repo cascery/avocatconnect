@@ -16,17 +16,22 @@ if ($conn->connect_error) {
 
 // Sanitize and escape user input
 $title = $conn->real_escape_string($_POST['title'] ?? '');
-$content = $conn->real_escape_string(strip_tags($_POST['content']));
-$clientId = $conn->real_escape_string($_POST['clientId'] ?? '');
+$content = $conn->real_escape_string(($_POST['content']));
+$userId = $conn->real_escape_string($_POST['userID'] ?? '');
 
-$query = "INSERT INTO question (clientID, title, content)
-          VALUES ('$clientId', '$title', '$content')";
+// Get clientId using userId
+$query = "SELECT clientID FROM client WHERE userID = '$userId'";
+$result = $conn->query($query);
 
-if ($conn->query($query) === TRUE) {
-    echo json_encode(["success" => true]);
-} else {
-    echo json_encode(["success" => false, "error" => $conn->error]);
-}
+
+    // Insert question with clientId
+    $insertQuery = "INSERT INTO question (userID, title, content) VALUES ('$userId', '$title', '$content')";
+    if ($conn->query($insertQuery) === TRUE) {
+        echo json_encode(["success" => true]);
+    } else {
+        echo json_encode(["success" => false, "error" => $conn->error]);
+    }
+
 
 $conn->close();
 ?>

@@ -1,0 +1,310 @@
+.cardlol {
+   /* background-image: url('output-onlinepngtools.png');
+    background-size: cover; /* Adjust as needed: contain, cover, or specific dimensions */
+  /*  background-repeat: no-repeat; /* Prevent the image from repeating */
+    /*width: 500px; /* Let the width adjust based on background size 
+    height: auto;
+    display:flex; 
+     background-color: #fdf2ec;
+    padding: 50px;
+   
+    justify-content:center;
+    align-items:center; */
+margin-top: 20px;
+	margin-left: 20px;
+    border: 3px solid #222222;
+    box-shadow: 4px 4px #222222;
+ 
+ 
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 700px;
+
+
+    
+
+  
+  
+  }
+  .cardlol p{
+
+
+    text-align: left;
+    margin: 20px;}
+  .h2div {
+border-radius: 2px;
+margin-top: 0;
+background-color: #dd7a9b;
+width: 100%;
+height:70px;
+justify-content: center; /* Center horizontally */
+align-items: center;
+
+  }
+  .h2div h2 {
+
+
+    margin: 0;
+  }
+
+
+
+
+  .cardlol .text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardlol .text img{
+    height: 170px;
+    border-radius: 50%;
+  margin-bottom:10px;
+}
+
+.cardlol .text h3{
+    font-size: 40px;
+    font-weight: 400;
+}
+
+
+.imglol{
+
+
+
+margin:10px;
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+  border: 2px solid #222222;
+  box-shadow:1px 1px #222222;
+
+}
+.docs {
+ 
+
+text-decoration: none;
+margin: 10px;
+
+
+
+}
+
+.docs a{
+
+color:black;
+
+    font-weight: 400;
+
+
+}
+
+
+.fill{
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+  color: var(--color);
+  transition: 0.25s;
+  
+  &:hover,
+  &:focus { 
+    border-color: var(--hover);
+    color: black;
+    background-color: pink;
+
+  
+}}
+
+.fill:hover,
+.fill:focus {
+  box-shadow: inset 0 0 0 2em var(--hover);
+}
+.docs:hover{
+
+
+  background-color: pink;
+}
+
+
+
+
+// Animate the size, inside
+.fill:hover,
+.fill:focus {
+  box-shadow: inset 0 0 0 2em var(--hover);
+}
+
+// Animate the size, outside
+.pulse:hover, 
+.pulse:focus {
+  animation: pulse 1s;
+  box-shadow: 0 0 0 2em transparent;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 var(--hover); }
+}
+
+// Stack multiple shadows, one from the left, the other from the right
+.close:hover,
+.close:focus {
+  box-shadow: 
+    inset -3.5em 0 0 0 var(--hover),
+    inset 3.5em 0 0 0 var(--hover);  
+}
+
+// Size can also be negative; see how it's smaller than the element
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  transform: translateY(-0.25em);
+}
+
+// Animating from the bottom
+.up:hover,
+.up:focus {
+  box-shadow: inset 0 -3.25em 0 0 var(--hover);
+}
+
+// And from the left
+.slide:hover,
+.slide:focus {
+  box-shadow: inset 6.5em 0 0 0 var(--hover);
+}
+
+// Multiple shadows, one on the outside, another on the inside
+.offset {  
+  box-shadow: 
+    0.3em 0.3em 0 0 var(--color),
+    inset 0.3em 0.3em 0 0 var(--color);
+  
+  &:hover,
+  &:focus {
+    box-shadow: 
+      0 0 0 0 var(--hover),
+      inset 6em 3.5em 0 0 var(--hover);
+  }
+}
+
+//=== Set button colors
+// If you wonder why use Sass vars or CSS custom properties...
+  // Make a map with the class names and matching colors
+$colors: (
+  fill: #a972cb,
+  pulse: #ef6eae, 
+  close: #ff7f82, 
+  raise: #ffa260, 
+  up: #e4cb58, 
+  slide: #8fc866, 
+  offset: #19bc8b
+);
+
+
+@each $button, $color in $colors {
+  .#{$button} {
+    --color: #{$color};
+    --hover: #{adjust-hue($color, 45deg)};
+  }
+}
+
+// Now every button will have different colors as set above. We get to use the same structure, only changing the custom properties.
+button {  
+  color: var(--color);
+  transition: 0.25s;
+  
+  &:hover,
+  &:focus { 
+    border-color: var(--hover);
+    color: #fff;
+  }
+}
+
+//=== Pen styling, ignore
+body {
+
+}
+
+// Basic button styles
+button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+}
+
+
+.button-container{
+
+
+
+  display: flex; /* Use flexbox to align buttons horizontally */
+  gap: 10px; 
+}
+
+.mainpagelol{
+
+
+  width:100%;
+  max-width: 1100px;
+  background-color: #fff;
+  padding: 3rem;
+  border: 1px solid #eaeaea;
+  margin-left: 80px;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal heading */
+.modal h2 {
+  margin-bottom: 20px;
+}
+
+/* Form styles */
+.modal form {
+  display: flex;
+  flex-direction: column;color:black;
+}
+
+/* Form inputs */
+.modal form input {
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  color:black;
+}
+
+/* Submit button */
+.modal form button {
+  padding: 10px 20px;
+  background-color: #dd7a9b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Close button */
+.modal .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}

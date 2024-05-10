@@ -24,9 +24,11 @@ const Loginclient = () => {
       .then((responseData) => {
         if (responseData.success) {
           // Set clientId in cookie
-          document.cookie = `Id=${responseData.clientId}; path=/;`;
-          // Set userType in cookie
-          document.cookie = `userType=${userType}; path=/;`;
+          document.cookie = `Id=${responseData.lawyerId}; userType=${userType}; path=/;`;
+          sessionStorage.setItem('clientId', responseData.clientId);
+          sessionStorage.setItem('userID', responseData.userID);
+
+          sessionStorage.setItem('userType', userType);
           navigate('/feed');
         } else {
           alert('Invalid email or password');

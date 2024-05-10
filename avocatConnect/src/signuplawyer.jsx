@@ -61,7 +61,7 @@ const [selectedSpecialty, setSelectedSpecialty] = useState('');
 
   
   const handleFormSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); 
 
     const formData = new FormData();
     formData.append('email', email);
@@ -86,7 +86,6 @@ const [selectedSpecialty, setSelectedSpecialty] = useState('');
         if (responseData.success) {
           navigate('/feed');
 
-          // Save user information in cookies
           console.log(responseData.userID);
 
           document.cookie = `userID=${responseData.userID}; path=/`;

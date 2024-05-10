@@ -26,11 +26,11 @@ $result = $conn->query($query);
 
 if ($result) {
     if ($result->num_rows > 0) {
-        // Fetch client data
         $row = $result->fetch_assoc();
         $clientId = $row['clientID'];
-        // Return success response with client ID
-        echo json_encode(["success" => true, "clientId" => $clientId]);
+        $userID = $row['userID'];
+
+        echo json_encode(["success" => true, "clientId" => $clientId,"userID" => $userID]);
     } else {
         echo json_encode(["success" => false, "error" => "Invalid email or password"]);
     }

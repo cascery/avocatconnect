@@ -21,7 +21,7 @@ if (empty($forumID)) {
 }
 
 // Fetch comments and corresponding lawyer usernames
-$query = "SELECT comments.commentID, comments.content, comments.forumID, comments.lawyerID, lawyer.nom AS lawyer_username
+$query = "SELECT comments.commentID, comments.content, comments.forumID, comments.lawyerID
           FROM comments
           LEFT JOIN lawyer ON comments.lawyerID = lawyer.id
           WHERE comments.forumID = '{$forumID}'";

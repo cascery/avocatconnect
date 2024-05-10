@@ -1,0 +1,180 @@
+
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i');
+
+* {box-sizing: border-box;}
+a, a:hover {transition: .25s color linear;}
+
+img {filter: grayscale(100%);}
+
+article time, article:hover time,
+.icon-rocknroll, .like-count {
+  transition: .25s opacity linear;
+}
+
+/*
+ |---------------------------------
+ |
+ | Project Start
+ |
+ |---------------------------------
+ */
+$theme: #BFBFA8;
+$dark: #444;
+$medium: #545454;
+$light: rgba(178, 179, 153, .125);
+
+html {
+  font-size: 16px;
+
+  body {
+    color: $dark;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.65;
+    margin: 50px 0;
+    padding: 0 25px;
+    .comments {
+      max-width: 450px;
+      margin: 50px auto;
+
+
+.uniqueness{
+
+
+  padding: 20px;
+  background-color: white;
+}
+.linkie{text-decoration: none;
+
+color:black}
+      article {
+        border: 3px solid #ffcd9f;
+  box-shadow: 4px 4px #ffcd9f;
+        padding: 20px;
+        background-color: white;
+        position: relative;
+        border-bottom: solid 1px $light;
+        margin: 0 auto 50px auto;
+        &:last-child {
+          border: none;
+        }
+        &:hover {
+          time {
+            opacity: 1;
+          }
+        }
+        img {
+          top: -10px;
+          left: -75px;
+          width: 50px;
+          height: 50px;
+          border-width: 0;
+          border-radius: 100%;
+        }
+        
+        h4 {
+          display: inline-block;
+          font-weight: 400;
+          margin-bottom: 25px;
+
+          a {
+            color: #404040;
+            text-transform: lowercase;
+            text-decoration: none;
+
+             &:hover {
+               color: $theme;
+            }
+          }
+        }
+        time {
+          color: $medium;
+          margin-left: 1rem;
+          text-transform: uppercase;
+        }
+        .icon-rocknroll {
+          color: $medium;
+          font-size: .85rem;
+          
+          &:hover {
+            opacity: .5;
+          }
+        }
+        time,
+        .like-count, 
+        .icon-rocknroll {
+          font-size: .75rem;
+          opacity: 0;
+        }
+        time, .like-count {
+          font-weight: 300;
+        }
+        p {
+          margin-bottom: 50px;
+
+          .reply {
+            color: $theme;
+            cursor: pointer;
+          }
+        }
+        .active {
+          opacity: 1;
+        }
+      }
+
+      section{
+
+background-color: white;
+padding: 20px;
+
+
+      }
+    }
+  }
+}
+
+.like-data {
+  float: right;
+}
+
+.icon-rocknroll {
+  background: none;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  margin: 0 .125rem 0 0;
+  padding: 0;
+}
+
+.comments article:hover .icon-rocknroll,
+.comments article:hover .like-count {
+  opacity: 1;
+}
+
+
+@media (max-width: 650px) {
+  .comments {
+    width: 100%;
+    padding: 0 1rem;
+    article {
+      width: 90%;
+      #profile-photo {
+        position: relative;
+        left: -1rem;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      h4 {
+        display: inline-block;
+        vertical-align: middle;
+        time {
+          display: block;
+          margin-left: 0 !important;
+          opacity: .5 !important;
+        }
+      }
+    }
+  }
+}

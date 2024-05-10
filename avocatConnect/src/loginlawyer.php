@@ -3,6 +3,8 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 
+// Start session
+
 $host = 'localhost';
 $username = 'root';
 $password = '';
@@ -28,6 +30,9 @@ if ($result) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $lawyerId = $row['userID'];
+
+        // Set lawyerId in session
+
         echo json_encode(["success" => true, "lawyerId" => $lawyerId]); // Include lawyerId in the response
     } else {
         echo json_encode(["success" => false, "error" => "Invalid email or password"]);

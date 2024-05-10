@@ -13,8 +13,9 @@ $conn = new mysqli($host, $username, $password, $database);
 if ($conn->connect_error) {
     die(json_encode(["success" => false, "error" => "Connection failed: " . $conn->connect_error]));
 }
+$questionId = $_GET['id'] ?? '';
 
-$query = "SELECT * FROM comments";
+$query = "SELECT * FROM comments WHERE forumID = $questionId";
 $result = $conn->query($query);
 
 if ($result) {

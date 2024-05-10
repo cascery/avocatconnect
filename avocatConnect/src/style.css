@@ -9,21 +9,18 @@
 
 .container {
    
-	width: fit-content;
-	height: fit-content;
+	left: 30px;
 	 display: flex;
 	 justify-content: center;
 	 align-items: center;
-	 padding: 2rem;
+	
 	 border-radius: 8px;
    
-	 place-items: center;
-	 padding-left: 6rem;
-	 padding-bottom: 6rem;
+	
 	 background-size: cover;
-	 background-image: url('../pngwing.com.png');
+
    
-	 animation: rotate 40s linear infinite;
+	 
 	  position: relative;
 	 
 	

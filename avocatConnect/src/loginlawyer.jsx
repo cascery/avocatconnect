@@ -25,7 +25,8 @@ const Loginlawyer = () => {
                 console.log('Response:', responseData);
                 if (responseData.success) {
                     document.cookie = `Id=${responseData.lawyerId}; userType=${userType}; path=/;`;
-                    navigate('/feed');
+                    sessionStorage.setItem('lawyerId', responseData.lawyerId);
+                    sessionStorage.setItem('userType', userType);                    navigate('/feed');
 
                     console.log("Login successful");
                 } else {

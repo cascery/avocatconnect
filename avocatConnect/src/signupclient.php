@@ -22,16 +22,14 @@ $username = $_POST['username'] ?? '';
 $phone = $_POST['phone'] ?? '';
 $adress = $_POST['adress'] ?? '';
 $birth = $_POST['birth'] ?? '';
-$userType = 'client'; // Set userType to 'client'
+$userType = 'client'; 
 
-// Insert user data into the user table
 $queryUser = "INSERT INTO user (name, lastname, birthday, email, tel, username, password, userType, creationDate)
           VALUES ('$name', '$lastname', '$birth', '$email', '$phone', '$username', '$password', '$userType', NOW())";
 
 if ($conn->query($queryUser) === TRUE) {
-    $userID = $conn->insert_id; // Get the auto-generated user ID
+    $userID = $conn->insert_id; 
 
-    // Insert client-specific data into the client table
     $queryClient = "INSERT INTO client (userID)
               VALUES ('$userID')";
 

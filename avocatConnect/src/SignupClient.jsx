@@ -53,7 +53,6 @@ const FirstPage = () => {
         console.log('Response:', responseData);
         if (responseData.success) {
           document.cookie = `Id=${responseData.userID}; path=/;`;
-          // Set userType in cookie
           document.cookie = `userType=${userType}; path=/;`;
          navigate('/feed');
          

@@ -6,9 +6,15 @@ import './askingplace.css';
 
 const AskingPlace = () => {
 
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+};
 
-  const clientID =  localStorage.getItem('clientId');
-  console.log("yo this is the id ",clientID);
+const handleDescriptionChange = (e) => {
+    setContent(e.target.value);
+};
+  const userID= sessionStorage.getItem('userID');
+
   const editorStyle = {
     height: '300px',
     width:'700px', // Set the height as needed
@@ -22,9 +28,7 @@ const AskingPlace = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
+  
 
   const handleContentChange = (value) => {
     setContent(value);
@@ -38,9 +42,7 @@ const AskingPlace = () => {
       const formData = new FormData();
       formData.append('title', title);
       formData.append('content', content);
-
-
-      formData.append('clientId', clientID); // Replace with actual client ID
+      formData.append('userID', userID); 
 
       const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/askingplace.php', {
         method: 'POST',
@@ -48,9 +50,9 @@ const AskingPlace = () => {
       });
 
       const data = await response.json();
-      console.log(data); // Handle response from backend
+      console.log(data); 
 
-      // Clear form fields after successful submission
+      window.location.reload();
       setTitle('');
       setContent('');
     } catch (error) {
@@ -59,27 +61,26 @@ const AskingPlace = () => {
   };
 
   return (
-    <div>
-      <h2>Compose Your Question</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-      
-          type="text"
-          value={title}
-          onChange={handleTitleChange}
-          placeholder="Question Title"
-          required
-        />
-       
-        <ReactQuill
-          theme="snow"
-          value={content}
-          onChange={handleContentChange}
-          style={editorStyle}
-        />
-        <button className='post' type="submit">Post Question</button>
-      </form>
+    <form onSubmit={handleSubmit}>
+    <div className="newPost">
+    <h3>ask a legal question!</h3>
+    <input  placeholder="Enter title here" type="text"
+                value={title}
+                onChange={handleTitleChange}
+                required
+  />
+   
+    <textarea className="editor" contentEditable value={content}
+                onChange={handleDescriptionChange}
+                required
+                ></textarea>
+    <div className="buttons">
+      {/* <button type="button">save draft</button> */}
+      <button data-func="clear" type="button">clear</button>
+      <button data-func="save" type="submit"  >post</button>
     </div>
+  </div>
+  </form>
   );
 };
 

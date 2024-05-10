@@ -1,7 +1,11 @@
 <?php
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
-header("Access-Control-Allow-Methods: GET, OPTIONS");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
 
 $host = 'localhost';
 $username = 'root';
@@ -11,40 +15,39 @@ $database = 'connectlawyers';
 $conn = new mysqli($host, $username, $password, $database);
 
 if ($conn->connect_error) {
-    die(json_encode(["success" => false, "error" => "Connection failed: " . $conn->connect_error]));
+    die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
 }
 
-$searchQuery = $_GET['searchQuery'] ?? '';
-
+$searchQuery = $_POST['searchQuery'] ?? '';
 if (empty($searchQuery)) {
-    die(json_encode(["success" => false, "error" => "Search query cannot be empty"]));
+    die(json_encode(["error" => "Search query not provided"]));
 }
 
-$searchParam = '%' . $conn->real_escape_string($searchQuery) . '%';
-$query = "SELECT * lawyer WHERE nom LIKE ?";
+// Assuming user and lawyer tables have the following structure:
+// user: userID, nom, prenom, profilePhoto
+// lawyer: id, userID
 
-$stmt = $conn->prepare($query);
+$query = "SELECT user.name, user.lastname, user.profilePic, lawyer.id ,user.bio
+FROM user 
+INNER JOIN lawyer ON user.userID = lawyer.userID 
+WHERE user.name LIKE '%$searchQuery%'  or  user.lastname LIKE '%$searchQuery%'";
 
-if ($stmt) {
-    $stmt->bind_param("s", $searchParam);
-    $stmt->execute();
-    $result = $stmt->get_result();
+$result = $conn->query($query);
 
-    if ($result->num_rows > 0) {
-        $lawyers = array();
-        while ($row = $result->fetch_assoc()) {
-            $base64Image = base64_encode($row['profilePhoto']);
-            $row['profilePhoto'] = $base64Image;
-            $lawyers[] = $row;
-        }
-        echo json_encode(["success" => true, "lawyers" => $lawyers]);
-    } else {
-        echo json_encode(["success" => true, "message" => "No lawyers found"]);
+if ($result && $result->num_rows > 0) {
+    $lawyers = [];
+    while ($row = $result->fetch_assoc()) {
+        $lawyers[] = [
+            "id" => $row['id'],
+            "name" => $row['name'],
+            "lastname" => $row['lastname'],
+            "profilePic" => $row['profilePic']
+        ];
     }
-
-    $stmt->close();
+    
+    echo json_encode(["success" => true, "lawyers" => $lawyers]);
 } else {
-    echo json_encode(["success" => false, "error" => $conn->error]);
+    echo json_encode(["error" => "No lawyers found"]);
 }
 
 $conn->close();

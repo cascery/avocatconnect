@@ -1,72 +1,88 @@
 /* eslint-disable no-unused-vars */
-import React, { useState,useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './searchlawyer.css';
+
+import placeholderImage from './images.png'; // Adjust the path accordingly
+
 const Searchforlawyers = () => {
-
-  
-  const [search, setSearch] = useState('');
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const location = useLocation();
+  const searchQuery = new URLSearchParams(location.search).get('query');
 
-  const handleSearch = async () => {
+  const fetchSearchResults = async () => {
+    setLoading(true);
     try {
       const formData = new FormData();
-      formData.append('searchQuery', search);
+      formData.append('searchQuery', searchQuery);
 
-      const response = await fetch(`http://localhost/avocatConnect/avocatConnect/src/searchforlawyers.php?${new URLSearchParams(formData).toString()}`);
+      const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/searchforlawyers.php', {
+        method: 'POST',
+        body: formData,
+      });
+
       if (!response.ok) {
         throw new Error('Network response was not ok.');
       }
-      
+
       const data = await response.json();
-      setResults(data.lawyers);
-      console.log(results);
+      if (data && data.lawyers) {
+        setResults(data.lawyers);
+      } else {
+        setResults([]);
+      }
     } catch (error) {
       console.error('Error fetching search results:', error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    console.log(results); // Log results whenever it changes
-  }, [results]); // Trigger the effect whenever results change
-
+    if (searchQuery) {
+      fetchSearchResults();
+    }
+  }, [searchQuery]);
 
   return (
     <div>
-  <h2>Search Lawyers</h2>
-  <input
-    type="text"
-    placeholder="Search for a lawyer..."
-    value={search}
-    onChange={(e) => setSearch(e.target.value)}
-  />
-  <button onClick={handleSearch}>Search</button>
-  <div className="lawyer-container">
-    {results.length > 0 ? (
-      results.map((lawyer) => (
-        <div key={lawyer.id} className="lawyer-item">
-          <div className="lawyer-info">
-            {lawyer.profilePhoto ? (
-              <img
-                src={`data:image/png;base64,${lawyer.profilePhoto}`}
-                alt={`${lawyer.nom} profile`}
-              />
-            ) : (
-              <div>No profile photo available</div>
-            )}
-            <Link className='link' to={`/lawyers/${lawyer.id}`}>
-  <div className="lawyer-name">
-    {lawyer.nom} {lawyer.prenom}
-  </div>
-</Link>
-          </div>
-        </div>
-      ))
-    ) : (
-      <p>No results found</p>
-    )}
-  </div>
-</div>
+      <section className="title container">
+        <div className="row">
+<h1></h1>        </div>
+      </section>
+
+      {/* Start Blog Layout */}
+      <div className="container">
+        {results.length > 0 ? (
+          results.map((lawyer) => (
+            <div className="row" key={lawyer.id}>
+              <div className="col-md-6 item">
+                <div className="item-in">
+                  <h4>
+                  <img src={lawyer.profilePic ? lawyer.profilePic : placeholderImage}
+                  alt={`${lawyer.name} ${lawyer.lastname}`} />
+
+                    {lawyer.name} {lawyer.lastname}
+                  </h4>
+                  <div className="seperator"></div>
+                  <p>
+                   {lawyer.bio}
+                  </p>
+                  <a href={`/lawyers/${lawyer.id}`}>
+                   check profile <i className="fa fa-long-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No results found</p>
+        )}
+      </div>
+    </div>
   );
 };
 
