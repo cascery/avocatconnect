@@ -30,6 +30,7 @@ if ($result) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $lawyerId = $row['userID'];
+        
 
         // Set lawyerId in session
 

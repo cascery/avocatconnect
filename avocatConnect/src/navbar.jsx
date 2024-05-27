@@ -41,7 +41,11 @@ function Navbar() {
 
 console.log("doess it work:",profilePic);
 
-
+const handleLogout = () => {
+  // Clear session
+  sessionStorage.clear();
+  // Navigate to main page
+  window.location.href = '/mainpage'  };
   return (
  
     <nav className="navbar">
@@ -54,7 +58,7 @@ console.log("doess it work:",profilePic);
         </li>
         <li className="navbar__item">
   <a href="/profile" className="navbar__link">  
-    <img
+    <img style={{height:"80%"}}
      src={`data:${profilePic}`} 
       alt={emptypfp}
     />
@@ -70,7 +74,7 @@ console.log("doess it work:",profilePic);
           <a href="#" className="navbar__link"><FaQuestionCircle className="navbar__icon" /><span>Help</span></a>        
         </li>
         <li className="navbar__item">
-          <a href="#" className="navbar__link"><FaCog className="navbar__icon" /><span>Settings</span></a>        
+          <a  onClick={handleLogout} href="#" className="navbar__link"><FaCog className="navbar__icon" / ><span>log out </span></a>        
         </li>
       </ul>
     </nav>

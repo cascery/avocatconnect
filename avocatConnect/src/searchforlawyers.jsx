@@ -48,41 +48,50 @@ const Searchforlawyers = () => {
   }, [searchQuery]);
 
   return (
+    <React.Fragment> 
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
     <div>
-      <section className="title container">
-        <div className="row">
-<h1></h1>        </div>
-      </section>
-
-      {/* Start Blog Layout */}
-      <div className="container">
-        {results.length > 0 ? (
-          results.map((lawyer) => (
-            <div className="row" key={lawyer.id}>
-              <div className="col-md-6 item">
+    <section className="bg-gray-900 text-black"style={{backgroundColor:"white"}}>
+      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+        <div className="mx-auto max-w-lg text-center"style={{backgroundColor:"white" ,color:"back"}}>
+         
+        </div>
+  
+        <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"  >
+          {results.length > 0 ? (
+            results.map((lawyer) => (
+              <div className="col-md-6 item" key={lawyer.id}>
                 <div className="item-in">
-                  <h4>
-                  <img src={lawyer.profilePic ? lawyer.profilePic : placeholderImage}
-                  alt={`${lawyer.name} ${lawyer.lastname}`} />
-
-                    {lawyer.name} {lawyer.lastname}
-                  </h4>
-                  <div className="seperator"></div>
-                  <p>
-                   {lawyer.bio}
-                  </p>
-                  <a href={`/lawyers/${lawyer.id}`}>
-                   check profile <i className="fa fa-long-arrow-right"></i>
+                  <a
+                    href={`/lawyers/${lawyer.id}`}
+                    className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
+                  >
+                    <img style={{borderStyle:"none"}}
+                      src={lawyer.profilePic ? lawyer.profilePic : placeholderImage}
+                      alt={`${lawyer.name} ${lawyer.lastname}`}
+                    />
+                    <h2 className="mt-4 text-xl font-bold text-black">
+                      {lawyer.name} {lawyer.lastname}
+                    </h2>
+                    <p className="mt-1 text-sm text-black-300">
+                      Check Profile <i className="fa fa-long-arrow-right"></i>
+                    </p>
                   </a>
                 </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <p>No results found</p>
-        )}
+            ))
+          ) : (
+            <p>No results found</p>
+          )}
+        </div>
+  
+        <div className="mt-12 text-center">
+         
+        </div>
       </div>
-    </div>
+    </section>
+  </div>
+  </React.Fragment>
   );
 };
 

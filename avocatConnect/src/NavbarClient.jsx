@@ -1,18 +1,32 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { faBell, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 import './navbarClient.css';
 import logo from './—Pngtree—law scales of justice icon_7715744.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import  {  useEffect } from 'react';
 import placeholderImage from './images.png';
+import ForumNotificationModal from './Forumnotificationmodal';
 
 
 function NavbarClient() {
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the modal open/close
+
+  // Function to toggle the modal state
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+
+
+
+
   const [searchQuery, setSearchQuery] = useState('');
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [showNotificationMenu, setShowNotificationMenu] = useState(false); // Add state for notification menu
   const navigate = useNavigate();
 
   const [clientInfo, setClientInfo] = useState(null);
@@ -45,12 +59,19 @@ function NavbarClient() {
     fetchClientInfo();
   }, []);
 
-  
+  const handleLogout = () => {
+    // Clear session
+    sessionStorage.clear();
+    // Navigate to main page
+    window.location.href = '/mainpage'  };
 
   const handleSearch = () => {
     if (searchQuery.trim() !== '') {
       navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
     }
+  };
+  const handleNotificationMenu = () => {
+    setShowNotificationMenu(!showNotificationMenu);
   };
 
   return (
@@ -94,7 +115,8 @@ function NavbarClient() {
   </g>
 </svg>
             </button>
-            <button className="notification-btn">
+            <button  className="notification-btn" onClick={() => 
+              setShowNotificationMenu(!showNotificationMenu)} >
             <div className=" tooltip">checkout notification</div> 
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"  className="feather feather-bell">
                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
@@ -118,10 +140,34 @@ function NavbarClient() {
 Edit Information</span>
       </div></li>
 
-                  <li> <div className="menu-item">
+                  <li  onClick={handleLogout}> <div className="menu-item">
         <FontAwesomeIcon icon={faSignOutAlt} className="lolool" />
         <span>Log Out</span>
       </div></li>
+                  
+                </ul>
+              </div>
+            )}
+
+
+
+
+
+
+               {showNotificationMenu && (
+              <div className="notification-menu">
+                <ul>
+                  <li onClick={toggleModal}>
+                  <div className="menu-item">
+        <span>     <FontAwesomeIcon icon={faBell} className="lolool"/>
+           forum notification</span>
+      </div></li>
+
+                  <li> <div className="menu-item"  onClick={() => window.location.href = '/reunioNcli'}>
+                    
+                    <FontAwesomeIcon icon={faEnvelope} className="lolool"/>
+                     <span>request updates</span>
+      </div></li> 
                   
                 </ul>
               </div>
@@ -134,6 +180,7 @@ Edit Information</span>
           </button>
         </div>
       </div>
+      <ForumNotificationModal isOpen={isModalOpen} onClose={toggleModal} />
     </nav>
   );
 }

@@ -1,3 +1,4 @@
+
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
@@ -5,7 +6,6 @@ import { useParams } from 'react-router-dom';
 import './lawyerprofile.css';
 import Announcements from './announcements';
 import Modal from 'react-modal';
-
 const LawyerProfile = () => {
   const lawyerSpecialties = [
     'Legal Consultation',
@@ -15,14 +15,59 @@ const LawyerProfile = () => {
     const [loading, setLoading] = useState(true);
     const [profileData, setProfileData] = useState(null);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [title, setTitle] = useState('');
+  const [details, setDetails] = useState('');
+  const [selectedDocuments, setSelectedDocuments] = useState([]);
+  const [Adocuments, AsetDocuments] = useState([]);
+
+
+  const handleDocumentSelection = (documentID) => {
+    setSelectedDocuments(prevSelectedDocuments => {
+        if (prevSelectedDocuments.includes(documentID)) {
+            return prevSelectedDocuments.filter(id => id !== documentID);
+        } else {
+            return [...prevSelectedDocuments, documentID];
+        }
+    });
+};
+useEffect(() => {
+    console.log(selectedDocuments); // Log the updated state
+}, [selectedDocuments]); 
+  
+const handleSendRequest = async () => {
+  // Filter out any empty values and get the correct selected document IDs
+  const selectedDocumentIDs = selectedDocuments.filter(id => id);
+  
+  // Implement the logic to send the request to the backend
+  const formData = new FormData();
+  formData.append('title', title);
+  formData.append('details', details);
+  formData.append('lawyerID', id);
+  formData.append('clientId', sessionStorage.getItem('clientId'));
+  formData.append('selectedDocuments', selectedDocumentIDs.join(',')); // Join the array into a comma-separated string
+  try {
+      const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/insertrequest.php', {
+          method: 'POST',
+          body: formData,
+      });
+      if (response.ok) {
+          // Request sent successfully, handle accordingly
+          console.log('Request sent successfully');
+      } else {
+          // Request failed, handle accordingly
+          console.error('Failed to send request');
+      }
+  } catch (error) {
+      // Handle any errors that occurred during the fetch
+      console.error('Error sending request:', error);
+  }
+};
     const openModal = () => {
       setModalIsOpen(true);
   };
-
   const closeModal = () => {
       setModalIsOpen(false);
   }; // State to manage modal visibility
-
     useEffect(() => {
       const fetchLawyerProfile = async () => {
           const formData = new FormData();
@@ -51,45 +96,37 @@ const LawyerProfile = () => {
   
       fetchLawyerProfile();
   }, [id]);
-
   const [documents, setDocuments] = useState([]);
   const clientId = sessionStorage.getItem('clientId');
-
 
   useEffect(() => {
     const fetchData = async () => {
         try {
             const formData = new FormData();
             formData.append('clientId', clientId);
-
             const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/managefiles.php', {
                 method: 'POST',
                 body: formData,
             });
-
             if (!response.ok) {
                 throw new Error('Failed to fetch documents');
             }
-
             const data = await response.json();
             setDocuments(data.documents);
+            console.log(documents)
         } catch (error) {
             console.error('Error fetching documents:', error);
         }
     };
-
     fetchData();
 }, [clientId]);
-
   
   
-
     return (
         <div>
            {profileData ? (
              <div className="card">
         
-
              <div className="card__header">
                  <div className="card__profile">
                      {profileData.profilePic && (
@@ -120,12 +157,9 @@ const LawyerProfile = () => {
                  <div className="card__heading">
                      <div className="heading">announcements</div>
 
-
                  </div>
                                      <Announcements userId={id}/>
-
              </div>
-
 
 
 
@@ -140,25 +174,25 @@ const LawyerProfile = () => {
        } }>
       <h2>Send a request</h2>
       <input type="text" placeholder="title" className="input input-bordered w-full max-w-xs" />
-      <textarea placeholder="details" className="textarea textarea-bordered textarea-lg w-full max-w-xs" >
+      <textarea placeholder="details"
 
+value={details} 
+    onChange={(e) => setDetails(e.target.value)}
+ className="textarea textarea-bordered textarea-lg w-full max-w-xs" >
       </textarea>
-
-      <details className="dropdown"   style={{ maxHeight: '400px', overflowY: 'auto', 
+      <details className="dropdown"    style={{ maxHeight: '700px', overflowY: 'auto', 
        } }
-
       >       <summary className="m-1 btn">Select Document</summary>
-
         <div className="flex flex-col justify-center items-center h-[100vh]">
       <div className="!z-5 relative flex flex-col rounded-[20px] max-w-[300px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 flex flex-col w-full !p-4 3xl:p-![18px] bg-white undefined">
      
-
         <div className="h-full w-full">
           {documents.map((document, index) => (
             <div key={index} className="mt-5 flex items-center justify-between p-2">
               <div className="flex items-center justify-center gap-2">
                 <input
-                  type="checkbox"
+onChange={() => handleDocumentSelection(document.documentID)}
+type="checkbox"
                   className="defaultCheckbox relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center 
                   justify-center rounded-md border border-gray-300 text-white/0 outline-none transition duration-[0.2s]
                   checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:bg-brand-500 dark:checked:bg-brand-400"
@@ -176,13 +210,12 @@ const LawyerProfile = () => {
       </div>
     </div>
       </details>
-      <button className="btn btn-outline" style={{marginTop:"10px",marginBottom:"10px"}}>Send request</button>
-      <button className="btn btn-outline" onClick={closeModal}>Close</button>
+      <button className="btn btn-outline" onClick={handleSendRequest} 
+      style={{marginTop:"10px",marginBottom:"10px", backgroundColor:"#679186",color:"white"}}>Send request</button>
+      <button  style={{ backgroundColor:"#679186",color:"white"}} className="btn btn-outline" onClick={closeModal}>Close</button>
     </div>
   </React.Fragment>
 </Modal>
-
-
 
            
          </div>
@@ -193,5 +226,4 @@ const LawyerProfile = () => {
         </div>
     );
 };
-
 export default LawyerProfile;

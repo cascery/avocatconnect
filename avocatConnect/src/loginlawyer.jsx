@@ -1,6 +1,7 @@
-import './style.css';
+import './style.css'; // You can keep this if you have additional styles
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 const Loginlawyer = () => {
     const navigate = useNavigate();
@@ -39,38 +40,53 @@ const Loginlawyer = () => {
     };
 
     return (
-        <div className='container'>
-            <div className='loginform'>
-                <form className='form-detail' action='#' method='post' id='myform' onSubmit={handleFormSubmit}>
-                    <h2>LOGIN LAWYER</h2>
-                    <div className='form-group'>
-                        <div className='form-row form-row-1'>
-                            <input
-                                type='text'
-                                className='todo-input-login-lol'
-                                placeholder='email'
-                                required
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
-                        <div className='form-row form-row-2'>
-                            <input
-                                type='password'
-                                className='todo-input-login-lol'
-                                placeholder='password'
-                                required
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div>
-                    </div>
-                    <div className='form-row-last'>
-                        <input type='submit' name='register' className='todo-btn-login-lol' value='log in' />
-                    </div>
-                </form>
+        <React.Fragment>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+       
+        <body style={{backgroundColor:"#f3f4f6"}}> 
+          
+        <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-50 text-gray-800">
+            <div className="mb-8 text-center">
+                <h1 className="my-3 text-4xl font-bold">Sign in</h1>
+                <p className="text-sm text-gray-600">Sign in to access your account</p>
             </div>
-        </div>
+            <form className="space-y-12" onSubmit={handleFormSubmit}>
+                <div className="space-y-4">
+                    <div>
+                        <label htmlFor="email" className="block mb-2 text-sm">Email address</label>
+                        <input
+                            type="text"
+                            name="email"
+                            id="email"
+                            placeholder="leroy@jenkins.com"
+                            className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password" className="text-sm">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="*****"
+                            className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                </div>
+                <div className="space-y-2">
+                    <div>
+                        <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md bg-violet-600 text-gray-50">Sign in</button>
+                    </div>
+                    <p className="px-6 text-sm text-center text-gray-600">Don't have an account yet?
+                        <a href="#" className="hover:underline text-violet-600">Sign up</a>.
+                    </p>
+                </div>
+            </form>
+        </div> </body></React.Fragment>
     );
 };
 

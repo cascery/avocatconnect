@@ -121,8 +121,7 @@ const ConfigureRequest = () => {
             <div className='h2div'>
                     <h2>documents associated:</h2>
                 </div>
-            <FetchDocuments requestID={Number(serviceRequestId)} />
-
+                {serviceRequestId && <FetchDocuments requestID={Number(serviceRequestId)} />}
             </div>
 
             <div className='cardlol'>
@@ -141,7 +140,7 @@ const ConfigureRequest = () => {
                     <label>Video Call Link:</label>
                     <input type="text" value={videoLink} onChange={(e) => setVideoLink(e.target.value)} />
 
-                    <button type="submit">OK</button>
+                    <button type="submit" style={{backgroundColor:"#679186"}}>OK</button>
                 </form>
             </Modal>
         </div>

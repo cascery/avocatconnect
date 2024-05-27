@@ -23,9 +23,7 @@ if (empty($searchQuery)) {
     die(json_encode(["error" => "Search query not provided"]));
 }
 
-// Assuming user and lawyer tables have the following structure:
-// user: userID, nom, prenom, profilePhoto
-// lawyer: id, userID
+
 
 $query = "SELECT user.name, user.lastname, user.profilePic, lawyer.id ,user.bio
 FROM user 

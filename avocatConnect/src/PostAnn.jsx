@@ -96,49 +96,7 @@ return(
                 onChange={handleTitleChange}
                 required
   />
-    <div className="toolbar">
-      <button type="button" data-func="bold"><i className="fa fa-bold"></i></button>
-      <button type="button" data-func="italic"><i className="fa fa-italic"></i></button>
-      <button type="button" data-func="underline"><i className="fa fa-underline"></i></button>
-      <button type="button" data-func="justifyleft"><i className="fa fa-align-left"></i></button>
-      <button type="button" data-func="justifycenter"><i className="fa fa-align-center"></i></button>
-      <button type="button" data-func="justifyright"><i className="fa fa-align-right"></i></button>
-      <button type="button" data-func="insertunorderedlist"><i className="fa fa-list-ul"></i></button>
-      <button type="button" data-func="insertorderedlist"><i className="fa fa-list-ol"></i></button>
-      <div className="customSelect">
-        <select data-func="fontname">
-          <optgroup label="Serif Fonts">
-            <option value="Bree Serif">Bree Serif</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Palatino Linotype">Palatino Linotype</option>
-            <option value="Times New Roman">Times New Roman</option>
-          </optgroup>
-          <optgroup label="Sans Serif Fonts">
-            <option value="Arial">Arial</option>
-            <option value="Arial Black">Arial Black</option>
-            <option value="Asap" selected>Asap</option>
-            <option value="Comic Sans MS">Comic Sans MS</option>
-            <option value="Impact">Impact</option>
-            <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
-            <option value="Tahoma">Tahoma</option>
-            <option value="Trebuchet MS">Trebuchet MS</option>
-            <option value="Verdana">Verdana</option>
-          </optgroup>
-          <optgroup label="Monospace Fonts">
-            <option value="Courier New">Courier New</option>
-            <option value="Lucida Console">Lucida Console</option>
-          </optgroup>
-        </select>
-      </div>
-      <div className="customSelect">
-        <select data-func="formatblock">
-          <option value="h1">Heading 1</option>
-          <option value="h2">Heading 2</option>
-          <option value="h4">Subtitle</option>
-          <option value="p" selected>Paragraph</option>
-        </select>
-      </div>
-    </div>
+ 
     <textarea className="editor" contentEditable value={description}
                 onChange={handleDescriptionChange}
                 required

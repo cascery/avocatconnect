@@ -147,6 +147,8 @@ alt={
   }} className="modal" isOpen={showModal} onRequestClose={() => setShowModal(false)}>
               
 <PostAnn/>
+
+
             </Modal> 
   </div>
    

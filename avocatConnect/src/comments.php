@@ -11,39 +11,37 @@ $database = 'connectlawyers';
 $conn = new mysqli($host, $username, $password, $database);
 
 if ($conn->connect_error) {
-    die(json_encode(["success" => false, "error" => "Connection failed: " . $conn->connect_error]));
+    die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
 }
 
 $forumID = $_POST['forumID'] ?? '';
+$comments = [];
 
-if (empty($forumID)) {
-    die(json_encode(["success" => false, "error" => "Forum ID cannot be empty"]));
-}
-
-// Fetch comments and corresponding lawyer usernames
-$query = "SELECT comments.commentID, comments.content, comments.forumID, comments.lawyerID
-          FROM comments
-          LEFT JOIN lawyer ON comments.lawyerID = lawyer.id
-          WHERE comments.forumID = '{$forumID}'";
+// Fetch comments including information about the lawyer
+$query = "SELECT c.*, u.name, u.lastname, u.profilePic 
+          FROM comments c
+          INNER JOIN lawyer l ON c.lawyerID = l.id
+          INNER JOIN user u ON l.userID = u.userID
+          WHERE c.forumID = '$forumID'";
 
 $result = $conn->query($query);
 
-if ($result) {
-    if ($result->num_rows > 0) {
-        $comments = [];
-        while ($row = $result->fetch_assoc()) {
-            $comments[] = $row;
-        }
-        $data = [
-            "success" => true,
-            "comments" => $comments
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $comment = [
+            "commentID" => $row['commentID'],
+            "forumID" => $row['forumID'],
+            "content" => $row['content'],
+            "date" => $row['date'],
+            "name" => $row['name'],
+            "lastname" => $row['lastname'],
+            "profilePic" => $row['profilePic']
         ];
-        echo json_encode($data);
-    } else {
-        echo json_encode(["success" => false, "error" => "No comments found for the forum"]);
+        $comments[] = $comment;
     }
+    echo json_encode(["success" => true, "comments" => $comments]);
 } else {
-    echo json_encode(["success" => false, "error" => $conn->error]);
+    echo json_encode(["success" => false, "error" => "No comments found"]);
 }
 
 $conn->close();

@@ -34,6 +34,7 @@ if ($resultDocs && $resultDocs->num_rows > 0) {
         // Push each fetched document into the array
         $documents[] = ["file" => base64_encode($row['file']),
         "date" => $row['date'],
+        "documentID"=>$row['documentID'],
     "file_name"=>$row['file_name']];
     }
 

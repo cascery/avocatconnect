@@ -8,6 +8,7 @@ const FetchDocuments = ({ requestID }) => {
     const [documents, setDocuments] = useState([]);
 
     useEffect(() => {
+        if (!requestID) return;
         const fetchData = async () => {
             try {
                 const formData = new FormData();
@@ -32,15 +33,15 @@ const FetchDocuments = ({ requestID }) => {
 
         fetchData();
     }, [requestID]);
-
+    if (!requestID) return null; 
     return (
         <div>
-            {documents.map((document, index) => (
-                <div className='fill' key={index}>
-                   
-                    <a href={`data:application/pdf;base64,${document.file}`} download={`document_${index}.pdf`}>Download Document {index + 1}</a>
-                </div>
-            ))}
+          {documents && documents.length > 0 && documents.map((document, index) => (
+    <div className='fill' key={index}>
+        <a href={`data:application/pdf;base64,${document.file}`} download={`document_${index}.pdf`}>Download Document {index + 1}</a>
+    </div>
+))}
+
         </div>
     );
 };

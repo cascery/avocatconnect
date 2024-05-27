@@ -24,20 +24,26 @@ import EditProfile from './EditProfile';
 import Reunions from './reunions';
 import EditProfileClient from './EditprofileCli';
 import ManageFiles from './managefiles';
+import ForumNotificationModal from './Forumnotificationmodal';
+import AcceptedRequests from './RequestResult';
 
 function App() {
 
-
   
   // Retrieve user type from session storage
-  const userType = sessionStorage.getItem('userType');
+  const userType = sessionStorage.getItem('userType'); 
+  
+  const isLoggedIn = userType === 'client' || userType === 'lawyer';
+
 
   return (
     <Router>
       {/* Conditional rendering of Navbar based on user type */}
-      {userType === 'client' ? <NavbarClient /> : <Navbar />}
-      
+      {isLoggedIn && (userType === 'client' ? <NavbarClient /> : <Navbar />)}      
       <Routes>
+      <Route path="/reunioNcli" exact element ={<AcceptedRequests/>}/>
+
+        <Route path="/notification" exact element ={<ForumNotificationModal/>}/>
       <Route path="/editprofilecli" exact element={<EditProfileClient />} />
       <Route path="/managefiles" exact element={<ManageFiles />} />
 
