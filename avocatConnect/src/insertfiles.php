@@ -29,8 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // Prepare and execute the SQL statement to insert the document into the database
-    $stmt = $conn->prepare("INSERT INTO documents (clientID, file_name, file) VALUES (?, ?, ?)");
-    $stmt->bind_param("iss", $clientId, $filename, $fileData);
+    $stmt = $conn->prepare("INSERT INTO documents (clientID, file_name, file, date) VALUES (?, ?, ?, NOW())");
+$stmt->bind_param("isb", $clientId, $filename, $fileData);
 
     if ($stmt->execute()) {
         echo json_encode(["success" => true, "message" => "Document inserted successfully"]);

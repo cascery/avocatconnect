@@ -54,7 +54,11 @@ const FirstPage = () => {
         if (responseData.success) {
           document.cookie = `Id=${responseData.userID}; path=/;`;
           document.cookie = `userType=${userType}; path=/;`;
-         navigate('/feed');
+          sessionStorage.setItem('clientId', responseData.clientID);
+          sessionStorage.setItem('userID', responseData.userID);
+
+          sessionStorage.setItem('userType', userType);
+          window.location.href = '/feed'
          
         
         } else {

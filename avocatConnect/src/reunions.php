@@ -30,20 +30,42 @@ if ($result && $result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $lawyerID = $row['id'];
 
-    // Retrieve reunions associated with the lawyer
-    $query = "SELECT reunionID, clinetID, lawyerID, date, videoLink, subject FROM reunion WHERE lawyerID = '$lawyerID'";
-    $result = $conn->query($query);
 
-    if ($result && $result->num_rows > 0) {
+    // Retrieve reunions associated with the lawyer
+    $queryReunions = "SELECT reunionID, clinetID, lawyerID, date, videoLink,time, subject FROM reunion WHERE lawyerID = '$lawyerID'";
+    $resultReunions = $conn->query($queryReunions);
+
+    if ($resultReunions && $resultReunions->num_rows > 0) {
         $reunions = [];
-        while ($row = $result->fetch_assoc()) {
+        while ($row = $resultReunions->fetch_assoc()) {
+            $clientID = $row['clinetID'];
+            
+            // Fetch client details using clientID
+            $queryClient = "SELECT name,lastname, profilePic FROM user WHERE userID = (SELECT userID FROM client WHERE clientID = '$clientID')";
+            $resultClient = $conn->query($queryClient);
+
+            if ($resultClient && $resultClient->num_rows > 0) {
+                $rowClient = $resultClient->fetch_assoc();
+                $clientName = $rowClient['name'];
+                $clientLastName = $rowClient['lastname'];
+                $clientProfilePic = $rowClient['profilePic'];
+            } else {
+                $clientName = 'Unknown';
+                $clientProfilePic = null;
+            }
+
             $reunions[] = [
                 "reunionID" => $row['reunionID'],
-                "clientID" => $row['clinetID'],
+                "clientID" => $clientID,
                 "lawyerID" => $row['lawyerID'],
+                "clientName" => $clientName,
+                "clientLastName" => $clientLastName,
+
+                "clientProfilePic" => $clientProfilePic,
                 "date" => $row['date'],
                 "videoLink" => $row['videoLink'],
-                "subject" => $row['subject']
+                "subject" => $row['subject'],
+                "time" => $row['time']
             ];
         }
         

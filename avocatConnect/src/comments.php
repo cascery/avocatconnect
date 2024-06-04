@@ -18,7 +18,7 @@ $forumID = $_POST['forumID'] ?? '';
 $comments = [];
 
 // Fetch comments including information about the lawyer
-$query = "SELECT c.*, u.name, u.lastname, u.profilePic 
+$query = "SELECT c.*, u.name,u.userID, u.lastname, u.profilePic 
           FROM comments c
           INNER JOIN lawyer l ON c.lawyerID = l.id
           INNER JOIN user u ON l.userID = u.userID
@@ -35,7 +35,8 @@ if ($result->num_rows > 0) {
             "date" => $row['date'],
             "name" => $row['name'],
             "lastname" => $row['lastname'],
-            "profilePic" => $row['profilePic']
+            "profilePic" => $row['profilePic'],
+            "userID"=>$row['userID'],
         ];
         $comments[] = $comment;
     }

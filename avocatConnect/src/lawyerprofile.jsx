@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import './lawyerprofile.css';
 import Announcements from './announcements';
 import Modal from 'react-modal';
+import emptypfp from './images.png'
+
 const LawyerProfile = () => {
   const lawyerSpecialties = [
     'Legal Consultation',
@@ -53,6 +55,8 @@ const handleSendRequest = async () => {
       if (response.ok) {
           // Request sent successfully, handle accordingly
           console.log('Request sent successfully');
+          window.location.reload();
+
       } else {
           // Request failed, handle accordingly
           console.error('Failed to send request');
@@ -123,15 +127,22 @@ const handleSendRequest = async () => {
   
   
     return (
-        <div>
+        <div style={{marginBottom:"70px"}}>
            {profileData ? (
-             <div className="card">
+             <div className="card" style={{marginTop:"90px"}}>
         
              <div className="card__header">
                  <div className="card__profile">
-                     {profileData.profilePic && (
-                         <img src={profileData.profilePic} alt={profileData.name ? `${profileData.name} profile` : 'Default Profile'} />
-                     )}
+                 {profileData.profilePic ? (
+  <img
+    src={profileData.profilePic}
+    alt={emptypfp}
+  />
+) : (
+  <img
+  src={emptypfp}
+/>
+)}
                  </div>
                  <div className="card__name">
                      <h2>{profileData.name} {profileData.lastname} <h5>{profileData.speciality}</h5></h2>
@@ -180,36 +191,36 @@ value={details}
     onChange={(e) => setDetails(e.target.value)}
  className="textarea textarea-bordered textarea-lg w-full max-w-xs" >
       </textarea>
-      <details className="dropdown"    style={{ maxHeight: '700px', overflowY: 'auto', 
-       } }
-      >       <summary className="m-1 btn">Select Document</summary>
-        <div className="flex flex-col justify-center items-center h-[100vh]">
-      <div className="!z-5 relative flex flex-col rounded-[20px] max-w-[300px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 flex flex-col w-full !p-4 3xl:p-![18px] bg-white undefined">
-     
-        <div className="h-full w-full">
-          {documents.map((document, index) => (
-            <div key={index} className="mt-5 flex items-center justify-between p-2">
-              <div className="flex items-center justify-center gap-2">
-                <input
-onChange={() => handleDocumentSelection(document.documentID)}
-type="checkbox"
-                  className="defaultCheckbox relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center 
+      <details className="dropdown">
+  <summary className="m-1 btn">Select Document</summary>
+  <div className="flex flex-col justify-center items-center h-[100vh]">
+    <div className="!z-5 relative flex flex-col rounded-[20px] max-w-[300px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 flex flex-col w-full !p-4 3xl:p-![18px] bg-white undefined" 
+    style={{ maxHeight: '100px', overflowY: 'auto' }}>
+      <div className="h-full w-full">
+        {documents.map((document, index) => (
+          <div key={index} className="mt-5 flex items-center justify-between p-2">
+            <div className="flex items-center justify-center gap-2">
+              <input
+                onChange={() => handleDocumentSelection(document.documentID)}
+                type="checkbox"
+                className="defaultCheckbox relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center 
                   justify-center rounded-md border border-gray-300 text-white/0 outline-none transition duration-[0.2s]
                   checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:bg-brand-500 dark:checked:bg-brand-400"
-                  name="weekly"
-                  style={{backgroundColor:"#c5d5d1",fontFamily: "'Poppins','helvetica,sans-serif'"}}
-                />
-                <p className="text-base font-bold text-navy-700 dark:text-white"style={{ fontFamily: "'Poppins', 'Helvetica', sans-serif", fontSize: '14px', fontWeight: 'normal' }}>
-                  {document.file_name}
-                </p>
-              </div>
-             
+                name="weekly"
+                style={{ backgroundColor: "#c5d5d1", fontFamily: "'Poppins','helvetica,sans-serif'" }}
+              />
+              <p className="text-base font-bold text-navy-700 dark:text-white" style={{ fontFamily: "'Poppins', 'Helvetica', sans-serif", fontSize: '14px', fontWeight: 'normal' }}>
+                {document.file_name}
+              </p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
-      </details>
+  </div>
+</details>
+
+
       <button className="btn btn-outline" onClick={handleSendRequest} 
       style={{marginTop:"10px",marginBottom:"10px", backgroundColor:"#679186",color:"white"}}>Send request</button>
       <button  style={{ backgroundColor:"#679186",color:"white"}} className="btn btn-outline" onClick={closeModal}>Close</button>

@@ -90,7 +90,7 @@ const PostAnn = () => {
 return(
     <form onSubmit={handleSubmit}>
     <div className="newPost">
-    <h3>Add New Post</h3>
+    <h3>Add a New announcement</h3>
     <input  placeholder="Enter title here" type="text"
                 value={title}
                 onChange={handleTitleChange}

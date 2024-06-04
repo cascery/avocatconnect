@@ -3,20 +3,14 @@
 
 $borderRadius: 10px;
 $spacer: 1rem;
-$primary: #ffcd9f;
+$primary: #f3d0d5;
 $text: blacks;
 $linkHeight: $spacer * 3.5;
 $timing: 250ms;
 $transition: $timing ease all;
 
 
-img {
-  border-radius: 50%;
-  width: 41px; /* Set the desired width */
-  height: 41px;
-  border: 3px solid #222222; /* Set the desired height */
 
-}
 @mixin gooeyEffect($i) {
   @keyframes gooeyEffect-#{$i} {
     0% {

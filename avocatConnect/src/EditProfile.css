@@ -1,5 +1,5 @@
 
-body{background:lightgrey}
+body{background:#faf7f5;}
 
 .sttngs p{color:#000;}
 
@@ -85,11 +85,14 @@ body{background:lightgrey}
 
 
 :root {
-  back3ground-color: #FCFEFD;
+  back3ground-color: #faf7f5;
   font-family: helvetica, arial, sans-serif;
   font-size: 15px;
 }
 
+ul {
+  list-style-type: none;
+}
 
 
 input, select, textarea {

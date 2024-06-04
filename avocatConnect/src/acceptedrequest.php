@@ -30,6 +30,8 @@ if ($result && $result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $clientId = $row['clientID'];
     $lawyerId = $row['lawyerID'];
+    $time = $_POST['time'] ?? ''; // Retrieve time from the POST request
+
 } else {
     die(json_encode(["error" => "Failed to fetch client ID and lawyer ID"]));
 }
@@ -43,7 +45,7 @@ if (!$result) {
 }
 
 // Insert a new entry into the reunion table
-$query = "INSERT INTO reunion (clinetID, lawyerID, date, videoLink) VALUES ($clientId, $lawyerId, '$date', '$videoLink')";
+$query = "INSERT INTO reunion (clinetID, lawyerID, date,time, videoLink) VALUES ($clientId, $lawyerId, '$date','$time' ,'$videoLink')";
 $result = $conn->query($query);
 
 if ($result) {

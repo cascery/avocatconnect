@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './navbar';
 import NavbarClient from './NavbarClient'; // Import the Navbar component for clients
@@ -31,8 +31,14 @@ function App() {
 
   
   // Retrieve user type from session storage
-  const userType = sessionStorage.getItem('userType'); 
-  
+  const [userType, setUserType] = useState(null);
+
+  useEffect(() => {
+    // Retrieve user type from session storage
+    const userTypeFromSession = sessionStorage.getItem('userType');
+    setUserType(userTypeFromSession);
+  }, []);
+
   const isLoggedIn = userType === 'client' || userType === 'lawyer';
 
 

@@ -58,11 +58,7 @@ const SelfProfileLawyer = () => {
     <div className="card__profile">
     <img
  src={`data:${profileData.profilePic}`} 
-alt={
-    profileData.name
-        ? `${profileData.name} profile`
-        : 'Default Profile' 
-}
+ alt={emptypfp} 
 />
 
     </div>

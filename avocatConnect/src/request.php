@@ -20,10 +20,12 @@ if (empty($userId)) {
 }
 
 // Retrieve service requests for the lawyer along with client details
-$query = "SELECT sr.serviceRequestID, sr.clientID, sr.serviceID, sr.status, sr.content, sr.Request_Date, u.name AS clientName, u.lastname AS clientLastName
+$query = "SELECT sr.serviceRequestID, sr.clientID, sr.serviceID, sr.status, sr.content, sr.Request_Date, 
+u.name AS clientName, u.lastname AS clientLastName, u.userID AS clientUserID
 FROM servicerequest sr
-INNER JOIN user u ON sr.clientID = u.userID
-WHERE sr.lawyerID = (SELECT lawyerID FROM lawyer WHERE userID = $userId)
+INNER JOIN client c ON sr.clientID = c.clientID
+INNER JOIN user u ON c.userID = u.userID
+WHERE sr.lawyerID = (SELECT lawyerID FROM lawyer WHERE userID = $userId) AND sr.status != 'accepted';
 ";
 $result = $conn->query($query);
 

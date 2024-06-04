@@ -5,7 +5,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap");
 :root {
-  --primary: #323232;
+  --primary: #faf7f5;
   --light-bg: #f4f4f4;
   --border: #eee;
 }
@@ -39,7 +39,8 @@ body {
   background-color: #fff;
   padding: 3rem;
   border: 1px solid #eaeaea;
-  margin-left: 80px;
+  margin-left: 20px;
+  
 }
 
 .card__header {
@@ -93,7 +94,8 @@ font-weight: lighter;}
       -ms-flex-align: center;
           align-items: center;
   font-size: 1.05rem;
-  background-color: var(--primary);
+  background-color: rgb(60, 55, 55);
+  margin-bottom: 20px;
   color: white;
   font-weight: bold;
   border: none;
@@ -307,7 +309,7 @@ select {
 }
 
 .insights .insight:hover {
-  color: white;
+  
   background-color: var(--primary);
   outline: none;
 }

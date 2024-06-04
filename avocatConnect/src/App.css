@@ -5,16 +5,16 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  
  
 
-
-    --main-color: #fdf2ec;
+    --main-color: #faf7f5;
     --fourth-color: #2e5047;
     --first-color:#f9b4ab;
     --sec-color:#264e70;
     --third-color:#bbd4ce;
     --a-color:#c0d0cc;
-    
+    background-color: #faf7f5;
 
 }
 
@@ -63,7 +63,7 @@ body{
  margin: 0;
   padding: 0;
  /* background-image: url('scale.jpg'); /* Replace 'path_to_your_image.jpg' with your image path */
-background-color:var(--a-color) ;
+background-color:#faf7f5 ;
 
 }
 

@@ -8,7 +8,7 @@ const Mainpage = () => {
 
   return (
 
-    <React.Fragment>
+    <React.Fragment style={{ height: "100vh",backgroundColor:"#faf7f5" }}>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 <div lassName="min-h-screen" style={{marginBottom:"1px;",paddingBottom:"0px"}}>
@@ -42,7 +42,7 @@ const Mainpage = () => {
     </div>
   </div>
 
-  <section className="py-8 z-10 font-serif" style={{ height: "100vh" }}>
+  <section className="py-8 z-10 font-serif" style={{ height: "100vh",backgroundColor:"#faf7f5" }}>
   <div className="flex flex-col md:flex-row items-center max-w-6xl px-6 py-8 mx-auto" style={{ height: "100%" }}>
     <div className="w-full md:w-1/2 py-8" style={{ height: "100%" }}>
       <h1 className="text-5xl font-bold leading-none text-center">

@@ -57,6 +57,8 @@ const Signuplawyer = () => {
   const [wilaya, setwilaya] = useState('');
   const [phone, setphone] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
+  const [education, seteducation] = useState('');
+
 const [selectedSpecialty, setSelectedSpecialty] = useState('');
 
   
@@ -73,6 +75,7 @@ const [selectedSpecialty, setSelectedSpecialty] = useState('');
     formData.append('phone', phone);
     formData.append('username', username);
     formData.append('years', years);
+    formData.append('education', education); // Add education to formData
     formData.append('city', selectedCity);
     formData.append('specialty', selectedSpecialty);
 
@@ -84,12 +87,13 @@ const [selectedSpecialty, setSelectedSpecialty] = useState('');
       .then((response) => response.json())
       .then((responseData) => {
         if (responseData.success) {
-          navigate('/feed');
-
+window.location.href='/feed';
           console.log(responseData.userID);
 
           document.cookie = `userID=${responseData.userID}; path=/`;
           document.cookie = `userType=lawyer; path=/`;
+          sessionStorage.setItem('lawyerId', responseData.lawyerId);
+          sessionStorage.setItem('userType', "lawyer");   
         
         } else {
           alert('Signup failed!');
@@ -105,7 +109,7 @@ const [selectedSpecialty, setSelectedSpecialty] = useState('');
 
 <div className='lmao'>
 <div className='titleholder'>
-<div className='titlediv'> <h4>SIGN UP AS A LAWYER</h4></div>
+<div className='titlediv'> </div>
 
 </div>
 
@@ -204,9 +208,17 @@ const [selectedSpecialty, setSelectedSpecialty] = useState('');
 
 
             <div className="form-row">
-              <input type='text' name="adress" className="adress" id="adress" placeholder="adress" required
+              <input type='text' name="adress" className="adress" id="adress" placeholder="localisation" required
                   value={adress}
                   onChange={(e) => setadress(e.target.value)}
+              
+              />
+            </div>
+          
+            <div className="form-row">
+              <input type='text' name="adress" className="adress" id="adress" placeholder=" education" required
+                  value={education}
+                  onChange={(e) => seteducation(e.target.value)}
               
               />
             </div>

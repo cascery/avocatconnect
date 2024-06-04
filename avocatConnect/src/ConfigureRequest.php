@@ -21,11 +21,15 @@ if (empty($requestId) || empty($lawyerId)) {
 }
 
 // Retrieve client details along with the service request information
-$query = "SELECT sr.content, u.userID, u.name, u.lastname, u.birthday, u.wilaya, u.email, u.tel, u.profilePic, u.username, u.password, u.usertype, sr.clientID
-          FROM user u
-          INNER JOIN servicerequest sr ON u.userID = sr.clientID
+$query = "SELECT sr.content, u.userID, u.name, u.lastname, u.birthday, u.wilaya, u.email, u.tel, u.profilePic, u.username, u.password, u.usertype
+          FROM servicerequest sr
+          INNER JOIN client c ON sr.clientID = c.clientID
+          INNER JOIN user u ON c.userID = u.userID
           WHERE sr.serviceRequestID = $requestId";
 $result = $conn->query($query);
+
+
+
 
 if ($result && $result->num_rows > 0) {
     $row = $result->fetch_assoc();
@@ -37,7 +41,7 @@ if ($result && $result->num_rows > 0) {
         "wilaya" => $row['wilaya'],
         "email" => $row['email'],
         "tel" => $row['tel'],
-        "profilePic" => base64_encode($row['profilePic']),
+        "profilePic" => $row['profilePic'],
         "username" => $row['username'],
     ];
     

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './forum.scss';
+import emptypfp from './images.png'
 
 const QuestionDetails = () => {
     const { id } = useParams();
@@ -94,11 +95,11 @@ const QuestionDetails = () => {
     return (
         <React.Fragment>
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
-        <div>
+        <div style={{backgroundColor:"white",minWidth:"700px"}} >
             {question && (
-           <section id="app" className="comments">
+           <section id="app" className="comments" >
 
-  <article>
+  <article style={{backgroundColor:"white"}}>
     <h4>{question.title}</h4>
     <time>{question.date}</time>
     <like></like>
@@ -110,7 +111,6 @@ const QuestionDetails = () => {
 </section>)}
 
 
-            <h3>Comments:</h3>
             <section className="bg-white dark:bg-gray-900 py-8 lg:py-16 antialiased">
   <div className="max-w-2xl mx-auto px-4">
     <div className="flex justify-between items-center mb-6">
@@ -148,12 +148,20 @@ const QuestionDetails = () => {
                                 <footer className="flex justify-between items-center mb-2">
                                     <div className="flex items-center">
                                         <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
-                                            <img
-                                                className="mr-2 w-6 h-6 rounded-full"
-                                                src={comment.profilePic}
-                                                alt={`${comment.name} ${comment.lastname}`}
-                                            />
+                                        {comment.profilePic ? (
+  <img                                                 className="mr-2 w-6 h-6 rounded-full"
+
+    src={comment.profilePic}
+    alt={emptypfp}
+  />
+) : (
+  <img                                                 className="mr-2 w-6 h-6 rounded-full"
+
+  src={emptypfp}
+/>
+)}
                                             {`${comment.name} ${comment.lastname}`}
+                                            
                                         </p>
                                         <p className="text-sm text-gray-600 dark:text-gray-400">
                                             <time pubdate datetime={comment.date} title={comment.date}>{comment.date}</time>

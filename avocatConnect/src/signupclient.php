@@ -34,7 +34,8 @@ if ($conn->query($queryUser) === TRUE) {
               VALUES ('$userID')";
 
     if ($conn->query($queryClient) === TRUE) {
-        echo json_encode(["success" => true, "userID" => $userID]);
+        $clientID = $conn->insert_id;
+        echo json_encode(["success" => true, "userID" => $userID, "clientID" => $clientID]);
     } else {
         echo json_encode(["success" => false, "error" => $conn->error]);
     }

@@ -5,10 +5,18 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
+body{
 
+
+    background-color: #faf7f5;
+
+}
 body, table, th, td {
     font-family: 'Sofia Sans', sans-serif;
 }
+.hover\:bg-gray-200:hover {
+    background-color: #f0f0f0;
+  }
 
 body{
     background: #fdf2ec;
