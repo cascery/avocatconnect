@@ -2,11 +2,10 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: POST");
-
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'connectlawyers';
+$servername = "41.111.198.131";
+$username = "lega";
+$password = "e23kEJrE";
+$dbname = "lega";
 
 // Create a database connection
 $conn = new mysqli($host, $username, $password, $database);

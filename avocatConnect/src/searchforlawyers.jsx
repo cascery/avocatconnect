@@ -18,7 +18,7 @@ const Searchforlawyers = () => {
       const formData = new FormData();
       formData.append('searchQuery', searchQuery);
 
-      const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/searchforlawyers.php', {
+      const response = await fetch('https://avocatconnect.000webhostapp.com/searchforlawyers.php', {
         method: 'POST',
         body: formData,
       });

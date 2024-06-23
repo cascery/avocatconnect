@@ -32,7 +32,7 @@ function EditProfile() {
 
 
         if (formData.has('name') || formData.has('lastName') || formData.has('username') || formData.has('state') || formData.has('wilaya')||formData.has('profilePic')) {
-            fetch('http://localhost/avocatConnect/avocatConnect/src/editprofile.php', {
+            fetch('https://avocatconnect.000webhostapp.com/editprofile.php', {
                 method: 'POST',
                 body: formData
             })
@@ -107,43 +107,9 @@ function EditProfile() {
                         </div>
                     </article>
                 </section>
-                <section id="section2">
-                    <input className="t" type="radio" name="sections" id="option2" />
-                    <label htmlFor="option2" className="trr"> Email</label>
-                    <article>
-                        <div className="tr wwq">
-                            <label className="label" htmlFor="input">Current email</label>
-                            <input className="input e" type="text" id="input" />
-                            <label className="label" htmlFor="input">New email</label>
-                            <input className="input e" type="email" id="input" />
-                            <label className="label" htmlFor="input">confirm password</label>
-                            <input className="input e" type="password" id="input" />
-                        </div>
-                        <button>Update Email</button>
-                    </article>
-                </section>
-                <section id="section3">
-                    <input className="t" type="radio" name="sections" id="option3" />
-                    <label htmlFor="option3" className="trr">Password</label>
-                    <article>
-                        <div className="tr wwq">
-                            <label className="label" htmlFor="input">current Password</label>
-                            <input className="input e" type="password" id="input" />
-                            <label className="label" htmlFor="input">new password</label>
-                            <input className="input e" type="password" id="input" />
-                            <label className="label" htmlFor="input">repeat password</label>
-                            <input className="input e" type="password" id="input" />
-                        </div>
-                        <button>Change Password</button>
-                    </article>
-                </section>
-                <section id="section4">
-                    <input className="t" type="radio" name="sections" id="option4" />
-                    <label htmlFor="option4" className="trr">Verify</label>
-                    <article>
-                        <p>The green verified badge <span className="ver">&#10026;</span> on ZIki lets people know that an account is authentic.</p>
-                    </article>
-                </section>
+               
+               
+              
             </div>
         </div>
     );

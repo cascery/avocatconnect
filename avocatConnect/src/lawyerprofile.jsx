@@ -48,7 +48,7 @@ const handleSendRequest = async () => {
   formData.append('clientId', sessionStorage.getItem('clientId'));
   formData.append('selectedDocuments', selectedDocumentIDs.join(',')); // Join the array into a comma-separated string
   try {
-      const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/insertrequest.php', {
+      const response = await fetch('https://avocatconnect.000webhostapp.com/insertrequest.php', {
           method: 'POST',
           body: formData,
       });
@@ -196,26 +196,27 @@ value={details}
   <div className="flex flex-col justify-center items-center h-[100vh]">
     <div className="!z-5 relative flex flex-col rounded-[20px] max-w-[300px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 flex flex-col w-full !p-4 3xl:p-![18px] bg-white undefined" 
     style={{ maxHeight: '100px', overflowY: 'auto' }}>
-      <div className="h-full w-full">
-        {documents.map((document, index) => (
-          <div key={index} className="mt-5 flex items-center justify-between p-2">
-            <div className="flex items-center justify-center gap-2">
-              <input
-                onChange={() => handleDocumentSelection(document.documentID)}
-                type="checkbox"
-                className="defaultCheckbox relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center 
-                  justify-center rounded-md border border-gray-300 text-white/0 outline-none transition duration-[0.2s]
-                  checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:bg-brand-500 dark:checked:bg-brand-400"
-                name="weekly"
-                style={{ backgroundColor: "#c5d5d1", fontFamily: "'Poppins','helvetica,sans-serif'" }}
-              />
-              <p className="text-base font-bold text-navy-700 dark:text-white" style={{ fontFamily: "'Poppins', 'Helvetica', sans-serif", fontSize: '14px', fontWeight: 'normal' }}>
-                {document.file_name}
-              </p>
-            </div>
-          </div>
-        ))}
+    <div className="h-full w-full">
+  {documents && documents.length > 0 && documents.map((document, index) => (
+    <div key={index} className="mt-5 flex items-center justify-between p-2">
+      <div className="flex items-center justify-center gap-2">
+        <input
+          onChange={() => handleDocumentSelection(document.documentID)}
+          type="checkbox"
+          className="defaultCheckbox relative flex h-[20px] min-h-[20px] w-[20px] min-w-[20px] appearance-none items-center 
+            justify-center rounded-md border border-gray-300 text-white/0 outline-none transition duration-[0.2s]
+            checked:border-none checked:text-white hover:cursor-pointer dark:border-white/10 checked:bg-brand-500 dark:checked:bg-brand-400"
+          name="weekly"
+          style={{ backgroundColor: "#c5d5d1", fontFamily: "'Poppins','helvetica,sans-serif'" }}
+        />
+        <p className="text-base font-bold text-navy-700 dark:text-white" style={{ fontFamily: "'Poppins', 'Helvetica', sans-serif", fontSize: '14px', fontWeight: 'normal' }}>
+          {document.file_name}
+        </p>
       </div>
+    </div>
+  ))}
+</div>
+
     </div>
   </div>
 </details>

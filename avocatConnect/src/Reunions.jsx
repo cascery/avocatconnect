@@ -20,7 +20,7 @@ const Reunions = () => {
             const formData = new FormData();
             formData.append('userId', sessionStorage.getItem('lawyerId'));
 
-            const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/reunions.php', {
+            const response = await fetch('https://avocatconnect.000webhostapp.com/reunions.php', {
                 method: 'POST',
                 body: formData,
             });
@@ -68,12 +68,11 @@ const Reunions = () => {
                           <th className="pb-3 text-start min-w-[175px]">client</th>
                           <th className="pb-3 text-end min-w-[100px]">date</th>
                           <th className="pb-3 text-end min-w-[100px]">time</th>
-                          <th className="pb-3 text-end min-w-[100px]">subject</th>
                           <th className="pb-3 pr-12 text-end min-w-[175px]">video link</th>
                         </tr>
                       </thead>
                       <tbody>
-  {reunions.length > 0 ? (
+  {reunions&&reunions.length > 0 ? (
     reunions.map((reunion, index) => (
       <tr key={index}>
         <td>
@@ -93,12 +92,7 @@ const Reunions = () => {
           <span className="font-semibold text-light-inverse text-md/normal">{reunion.time}</span>
         </td>
         
-        <td className="p-3 pr-0 text-end">
-          <span className="text-center align-baseline inline-flex px-2 py-1 mr-auto items-center font-semibold text-base/none text-success bg-success-light rounded-lg">
-           
-            {reunion.subject}
-          </span>
-        </td>
+       
         <td className="p-3 pr-12 text-end">
           <span className="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-primary bg-primary-light rounded-lg">
             

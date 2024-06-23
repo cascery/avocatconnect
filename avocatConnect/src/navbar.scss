@@ -36,6 +36,7 @@ body{
 }
 
 .navbar{
+  border: solid 1px;
   $ref: &;
   position: fixed;
   top: $spacer;

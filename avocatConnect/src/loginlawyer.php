@@ -5,11 +5,10 @@ header("Access-Control-Allow-Methods: POST, OPTIONS");
 
 // Start session
 
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'connectlawyers';
-
+$servername = "41.111.198.131";
+$username = "lega";
+$password = "e23kEJrE";
+$dbname = "lega";
 $conn = new mysqli($host, $username, $password, $database);
 
 if ($conn->connect_error) {

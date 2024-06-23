@@ -11,16 +11,18 @@ Modal.setAppElement('#root'); // Set the root element for accessibility
 const Feed = () => {
     const userType = sessionStorage.getItem('userType');
     // State to store questions
-    const [questions, setQuestions] = useState([]);
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
     const [showModal, setShowModal] = useState(false);
 
-  const openModal = () => setShowModal(true);
-  const closeModal = () => setShowModal(false);
+    const [questions, setQuestions] = useState([]);
+
+
 
     // Function to fetch questions from the server
     const fetchQuestions = async () => {
         try {
-            const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/feed.php');
+            const response = await fetch('https://avocatconnect.000webhostapp.com/feed.php');
             if (response.ok) {
                 const data = await response.json();
                 setQuestions(data.questions);

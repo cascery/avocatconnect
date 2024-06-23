@@ -41,7 +41,7 @@ function NavbarClient() {
       formData.append('clientId', clientId);
 
       try {
-        const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/navbarclient.php', {
+        const response = await fetch('https://avocatconnect.000webhostapp.com/navbarclient.php', {
           method: 'POST',
           body: formData,
         });
@@ -139,14 +139,14 @@ function NavbarClient() {
             </button>
             <button  className="notification-btn" onClick={() => 
               setShowNotificationMenu(!showNotificationMenu)} >
-            <div className=" tooltip">checkout notification</div> 
+            <div className=" notification-btn-tooltip">checkout notification</div> 
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"  className="feather feather-bell">
                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
                 <path d="M13.73 21a2 2 0 0 1-3.46 0" />
               </svg>
             </button>
             <button className="profile-btn" onClick={() => setShowProfileMenu(!showProfileMenu)}>
-            <div className="tooltip">chek notification</div> 
+            <div className="notification-btn-tooltip">check notification</div> 
             <img 
     src={clientInfo && clientInfo.profilePic ? `data:${clientInfo.profilePic}` : placeholderImage}
     alt={clientInfo ? `${clientInfo.name} ${clientInfo.lastname}` : "name"} 

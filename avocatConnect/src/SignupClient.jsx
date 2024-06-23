@@ -44,7 +44,7 @@ const FirstPage = () => {
     formData.append('phone', phone);
     formData.append('username', username);
 
-    fetch('http://localhost/avocatConnect/avocatConnect/src/signupclient.php', {
+    fetch('https://avocatconnect.000webhostapp.com/signupclient.php', {
       method: 'POST',
       body: formData,
     })
@@ -75,7 +75,6 @@ const FirstPage = () => {
 
 <div className='lmao'>
 <div className='titleholder'>
-<div className='titlediv'> <h4>SIGN UP AS A CLIENT</h4></div>
 
 </div>
 

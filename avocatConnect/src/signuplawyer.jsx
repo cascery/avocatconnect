@@ -21,7 +21,9 @@ import './style.css'
 
 
   const lawyerSpecialties = [
-    'Droit immobilier',
+    'Droit des personnes' ,
+     'Droit immobilier',
+     'Droit administratif',
     'Droit rural',
     'Droit de l\'environnement',
     'Droit public',
@@ -80,7 +82,7 @@ const [selectedSpecialty, setSelectedSpecialty] = useState('');
     formData.append('specialty', selectedSpecialty);
 
 
-    fetch('http://localhost/avocatConnect/avocatConnect/src/signuplawyer.php', {
+    fetch('https://avocatconnect.000webhostapp.com/signuplawyer.php', {
       method: 'POST',
       body: formData,
     })
@@ -88,11 +90,11 @@ const [selectedSpecialty, setSelectedSpecialty] = useState('');
       .then((responseData) => {
         if (responseData.success) {
 window.location.href='/feed';
-          console.log(responseData.userID);
+          console.log("userid",responseData.userID);
 
           document.cookie = `userID=${responseData.userID}; path=/`;
           document.cookie = `userType=lawyer; path=/`;
-          sessionStorage.setItem('lawyerId', responseData.lawyerId);
+          sessionStorage.setItem('lawyerId', responseData.userID);
           sessionStorage.setItem('userType', "lawyer");   
         
         } else {

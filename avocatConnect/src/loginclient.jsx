@@ -20,7 +20,7 @@ const Loginclient = () => {
     formData.append('email', email);
     formData.append('password', password);
 
-    fetch('http://localhost/avocatConnect/avocatConnect/src/loginclient.php', {
+    fetch('https://avocatconnect.000webhostapp.com/loginclient.php', {
       method: 'POST',
       body: formData,
     })
@@ -95,7 +95,7 @@ const Loginclient = () => {
    
     <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-50 text-gray-800"
     
-    style={{backgroundColor:"#fae7f4",marginTop:"50px",width:"500px",marginBottom:"50px",left:"0",right:"0",
+    style={{backgroundColor:"#ece3ca",marginTop:"50px",width:"500px",marginBottom:"50px",left:"0",right:"0",
     borderRadius: "50px",
     border: "3px solid #222222",
    boxShadow: "4px 4px #222222",

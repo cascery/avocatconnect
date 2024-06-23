@@ -16,10 +16,10 @@ const Mainpage = () => {
     <div className="w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
       <div x-data="{ open: true }" className="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
         <div className="flex flex-row items-center justify-between p-4">
-          <a href="#" className="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">
+          <a href="/mainpage" className="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">
             
           
-          <img className='logo' src={logo} alt="" />
+          <img  className='logo' src={logo} alt="" />
 
             AvocatConnect</a>
           <button className="rounded-lg md:hidden focus:outline-none focus:shadow-outline" onClick={() => { open = !open }}>
@@ -33,7 +33,7 @@ const Mainpage = () => {
           <a  href="/feed" className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" >Blog</a>
           <a  href="/loginclient" className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" >log in as a client</a>
           <a  href="/loginlawyer"className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" >log in as a lawyer</a>
-          <a  href="/singupclient"className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" >sing up as a client </a>
+          <a  href="/signupclient"className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" >sing up as a client </a>
           <a  href="/signuplawyer"className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" >sing up as a lawyer </a>
 
          
@@ -50,7 +50,13 @@ const Mainpage = () => {
       </h1>
     </div>
     <div className="w-full md:w-1/2 py-8" style={{ height: "100%" }}>
-      <img src={guy} alt="Person who invests" className="g-imagelol" style={{ width: "100%", height: "100%", borderRadius: "0%", border: "none" }} />
+      <img src={guy} alt="Person who invests" className="g-imagelol" style={{ width: '350px',
+    height: '350px',borderRadius: '100%',
+    border: '3px solid #222222',
+    boxShadow: '4px 4px #222222',
+    backgroundClip: '#222222',
+    objectFit: 'cover'
+  }} />
     </div>
   </div>
 </section>
@@ -62,16 +68,20 @@ const Mainpage = () => {
 
 </div>
 
-<h1 className="text-5xl font-bold leading-none text-center">our features</h1>
 
 <section className="bg-white dark:bg-gray-900">
+  <div style={{marginTop:"30px",marginBottom:"50px"}}>
+<h1 className="text-4xl font-bold leading-none text-center" >our features</h1>
+</div>
   <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
     <div className="max-w-screen-md mb-8 lg:mb-16">
     </div>
  
     
     <div className="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
-      <div>
+      <div style={{borderRadius: "50px",
+    border: "3px solid #222222",
+   boxShadow: "4px 4px #222222", padding:"20px"}}>
         <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0">
           </g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
@@ -82,7 +92,9 @@ const Mainpage = () => {
         <h3 className="mb-2 text-xl font-bold dark:text-white">easy search for lawyers</h3>
         <p className="text-gray-500 dark:text-gray-400">Quickly find the right legal expertise tailored to your needs with our intuitive search functionality.</p>
       </div>
-      <div>
+      <div style={{borderRadius: "50px",
+    border: "3px solid #222222",
+   boxShadow: "4px 4px #222222", padding:"20px"}}>
         <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -98,7 +110,9 @@ const Mainpage = () => {
         <h3 className="mb-2 text-xl font-bold dark:text-white">document upload and management</h3>
         <p className="text-gray-500 dark:text-gray-400">Streamline your document handling process with seamless upload and efficient management features.</p>
       </div>
-      <div>
+      <div style={{borderRadius: "50px",
+    border: "3px solid #222222",
+   boxShadow: "4px 4px #222222", padding:"20px"}}>
         <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" 
@@ -120,23 +134,29 @@ const Mainpage = () => {
         <h3 className="mb-2 text-xl font-bold dark:text-white">posting updates by lawyers</h3>
         <p className="text-gray-500 dark:text-gray-400">Stay informed with timely updates and insights from legal professionals relevant to your business.</p>
       </div>
-      <div>
+      <div style={{borderRadius: "50px",
+    border: "3px solid #222222",
+   boxShadow: "4px 4px #222222", padding:"20px"}}>
         <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
 <svg viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" 
 xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ab8873"><g id="SVGRepo_bgCarrier"
  stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" 
  stroke-linejoin="round" stroke='#ab8873'>
-  </g><g id="SVGRepo_iconCarrier"> <title>profile_round [#1346]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-380.000000, -2119.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M338.083123,1964.99998 C338.083123,1962.79398 336.251842,1960.99998 334,1960.99998 C331.748158,1960.99998 329.916877,1962.79398 329.916877,1964.99998 C329.916877,1967.20599 331.748158,1968.99999 334,1968.99999 C336.251842,1968.99999 338.083123,1967.20599 338.083123,1964.99998 M341.945758,1979 L340.124685,1979 C339.561214,1979 339.103904,1978.552 339.103904,1978 C339.103904,1977.448 339.561214,1977 340.124685,1977 L340.5626,1977 C341.26898,1977 341.790599,1976.303 341.523154,1975.662 C340.286989,1972.69799 337.383888,1970.99999 334,1970.99999 C330.616112,1970.99999 327.713011,1972.69799 326.476846,1975.662 C326.209401,1976.303 326.73102,1977 327.4374,1977 L327.875315,1977 C328.438786,1977 328.896096,1977.448 328.896096,1978 C328.896096,1978.552 328.438786,1979 327.875315,1979 L326.054242,1979 C324.778266,1979 323.773818,1977.857 324.044325,1976.636 C324.787453,1973.27699 327.107688,1970.79799 330.163906,1969.67299 C328.769519,1968.57399 327.875315,1966.88999 327.875315,1964.99998 C327.875315,1961.44898 331.023403,1958.61898 334.733941,1959.04198 C337.422678,1959.34798 339.650022,1961.44698 340.05323,1964.06998 C340.400296,1966.33099 339.456073,1968.39599 337.836094,1969.67299 C340.892312,1970.79799 343.212547,1973.27699 343.955675,1976.636 C344.226182,1977.857 343.221734,1979 341.945758,1979 M337.062342,1978 C337.062342,1978.552 336.605033,1979 336.041562,1979 L331.958438,1979 C331.394967,1979 330.937658,1978.552 330.937658,1978 C330.937658,1977.448 331.394967,1977 331.958438,1977 L336.041562,1977 C336.605033,1977 337.062342,1977.448 337.062342,1978" id="profile_round-[#1346]"> </path> </g> </g> </g> </g></svg>        </div>
+  </g><g id="SVGRepo_iconCarrier"> <title>profile_round [#1346]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-380.000000, -2119.000000)" fill="#ab8873"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M338.083123,1964.99998 C338.083123,1962.79398 336.251842,1960.99998 334,1960.99998 C331.748158,1960.99998 329.916877,1962.79398 329.916877,1964.99998 C329.916877,1967.20599 331.748158,1968.99999 334,1968.99999 C336.251842,1968.99999 338.083123,1967.20599 338.083123,1964.99998 M341.945758,1979 L340.124685,1979 C339.561214,1979 339.103904,1978.552 339.103904,1978 C339.103904,1977.448 339.561214,1977 340.124685,1977 L340.5626,1977 C341.26898,1977 341.790599,1976.303 341.523154,1975.662 C340.286989,1972.69799 337.383888,1970.99999 334,1970.99999 C330.616112,1970.99999 327.713011,1972.69799 326.476846,1975.662 C326.209401,1976.303 326.73102,1977 327.4374,1977 L327.875315,1977 C328.438786,1977 328.896096,1977.448 328.896096,1978 C328.896096,1978.552 328.438786,1979 327.875315,1979 L326.054242,1979 C324.778266,1979 323.773818,1977.857 324.044325,1976.636 C324.787453,1973.27699 327.107688,1970.79799 330.163906,1969.67299 C328.769519,1968.57399 327.875315,1966.88999 327.875315,1964.99998 C327.875315,1961.44898 331.023403,1958.61898 334.733941,1959.04198 C337.422678,1959.34798 339.650022,1961.44698 340.05323,1964.06998 C340.400296,1966.33099 339.456073,1968.39599 337.836094,1969.67299 C340.892312,1970.79799 343.212547,1973.27699 343.955675,1976.636 C344.226182,1977.857 343.221734,1979 341.945758,1979 M337.062342,1978 C337.062342,1978.552 336.605033,1979 336.041562,1979 L331.958438,1979 C331.394967,1979 330.937658,1978.552 330.937658,1978 C330.937658,1977.448 331.394967,1977 331.958438,1977 L336.041562,1977 C336.605033,1977 337.062342,1977.448 337.062342,1978" id="profile_round-[#1346]"> </path> </g> </g> </g> </g></svg>        </div>
         <h3 className="mb-2 text-xl font-bold dark:text-white">accessive profile for lawyers</h3>
         <p className="text-gray-500 dark:text-gray-400">Showcase your expertise and credentials effectively with our comprehensive lawyer profile feature.</p>
       </div>
-      <div>
+      <div style={{borderRadius: "50px",
+    border: "3px solid #222222",
+   boxShadow: "4px 4px #222222", padding:"20px"}}>
         <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
         <svg fill="#ab8873" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 256 256" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M161.7,156v-13.4c-1.3-15.5-19.3-15.3-19.3-15.3H114c-20.4,0.4-19.7,15.3-19.7,15.3V156H161.7z"></path> <path d="M108.7,52.2h3.3l0,15h31.6V52.1l3.4,0v15.2h10.5V49.9c-1.2-13.7-17-13.5-17-13.5H132l-3.4,5.6l-3.4-5.6h-9.7 c-17.9,0.3-17.3,13.5-17.3,13.5v17.3h10.5V52.2z"></path> <rect x="87.1" y="69.6" width="81.6" height="12"></rect> <circle cx="128.6" cy="19.9" r="12.5"></circle> <path d="M163.6,140.8V156h67.4v-15.2c-1.3-15.5-19.3-15.3-19.3-15.3h-28.4C162.8,125.9,163.6,140.8,163.6,140.8z"></path> <path d="M198.1,121c7.8,0,14.2-6.4,14.2-14.2c0-7.8-6.3-14.2-14.2-14.2c-7.8,0-14.2,6.3-14.2,14.2C183.9,114.6,190.3,121,198.1,121 z"></path> <path d="M15.9,162.2v23.5h12.9v62.9h198.3v-62.9c0,0,6.5,0,13,0v-23.5H15.9z"></path> <path d="M152.1,121l6.9-36.3H96.7l7,36.5c2.8-1.2,5.9-2,9.5-2.3c-2-3-3.2-6.6-3.2-10.5c0-10.5,8.5-19,19-19 c10.5,0,19.1,8.6,19.1,19c0,3.9-1.2,7.5-3.2,10.6C147.1,119.3,149.6,119.9,152.1,121z"></path> <path d="M92.5,156v-13.4c-1.3-15.5-19.3-15.3-19.3-15.3H44.8c-20.3,0.4-19.6,15.3-19.6,15.3l0,13.4H92.5z"></path> <circle cx="128.9" cy="108.6" r="14.2"></circle> <circle cx="59.7" cy="108.6" r="14.2"></circle> </g> </g></svg>        </div>
         <h3 className="mb-2 text-xl font-bold dark:text-white">hire a lawyer for legal service</h3>
         <p className="text-gray-500 dark:text-gray-400">Access top-tier legal services tailored to your specific requirements with ease and confidence.</p>
       </div>
-      <div>
+      <div style={{borderRadius: "50px",
+    border: "3px solid #222222",
+   boxShadow: "4px 4px #222222", padding:"20px"}}>
         <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

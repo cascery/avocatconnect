@@ -18,7 +18,7 @@ const ManageFiles = () => {
                 const formData = new FormData();
                 formData.append('clientId', clientId);
 
-                const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/managefiles.php', {
+                const response = await fetch('https://avocatconnect.000webhostapp.com/managefiles.php', {
                     method: 'POST',
                     body: formData,
                 });
@@ -63,7 +63,7 @@ const ManageFiles = () => {
             formData.append('filename', filename);
             formData.append('file', file);
 
-            const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/insertfiles.php', {
+            const response = await fetch('https://avocatconnect.000webhostapp.com/insertfiles.php', {
                 method: 'POST',
                 body: formData,
             });
@@ -92,7 +92,7 @@ const ManageFiles = () => {
             const formData = new FormData();
             formData.append('documentID', documentId); // Correct field name
         
-            const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/deletefile.php', {
+            const response = await fetch('https://avocatconnect.000webhostapp.com/deletefile.php', {
                 method: 'POST',
                 body: formData,
             });
@@ -153,11 +153,11 @@ const ManageFiles = () => {
                     </div>
                     <div className="container px-5 py-24 mx-auto" style={{ left: '0px', border: "solid 1px" ,backgroundColor:"white" }}>
                         <div className="flex flex-wrap -m-2">
-                            {documents.length > 0 ? (
+                            {documents &&documents.length > 0 ? (
                                 documents.map((document, index) => (
 <div className="p-2 lg:w-1/3 md:w-1/2 w-full" key={index} >
                                         
-                                        <div style={{ transition: 'background-color 0.3s', backgroundColor: 'inherit',border:"1px solid" }} onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#fae7f4'; }} onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'inherit'; }} className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+                                        <div style={{ transition: 'background-color 0.3s', backgroundColor: 'inherit',border:"1px solid" ,padding:"20px"}} onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#fae7f4'; }} onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'inherit'; }} className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
                                         <button
                                             id={`dropdownMenuIconButton_${index}`}
                                             data-dropdown-toggle={`dropdownDots_${index}`}

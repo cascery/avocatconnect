@@ -26,7 +26,7 @@ function EditProfileClient() {
             formData.append('profilePic', profileImage);
         }
     
-        fetch('http://localhost/avocatConnect/avocatConnect/src/editprofilecli.php', {
+        fetch('https://avocatconnect.000webhostapp.com/editprofilecli.php', {
             method: 'POST',
             body: formData
         })

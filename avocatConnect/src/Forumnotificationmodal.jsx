@@ -15,7 +15,7 @@ const ForumNotificationModal = ({ isOpen, onClose }) => {
                 const formData = new FormData();
                 formData.append('userID', userID);
     
-                const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/getcommentNotification.php', {
+                const response = await fetch('https://avocatconnect.000webhostapp.com/getcommentNotification.php', {
                     method: 'POST',
                     body: formData
                 });

@@ -6,7 +6,7 @@ import './ConfigureRequest.scss';
 
 const FetchDocuments = ({ requestID }) => {
     const [documents, setDocuments] = useState([]);
-
+console.log(requestID);
     useEffect(() => {
         if (!requestID) return;
         const fetchData = async () => {
@@ -14,7 +14,7 @@ const FetchDocuments = ({ requestID }) => {
                 const formData = new FormData();
                 formData.append('requestId', requestID);
 
-                const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/retrieve_documents.php', {
+                const response = await fetch('https://avocatconnect.000webhostapp.com/retrieve_documents.php', {
                     method: 'POST',
                     body: formData,
                 });
@@ -25,6 +25,7 @@ const FetchDocuments = ({ requestID }) => {
 
                 const data = await response.json();
                 setDocuments(data.documents);
+                console.log(data.documents);
               
             } catch (error) {
                 console.error('Error fetching documents:', error);
@@ -38,7 +39,7 @@ const FetchDocuments = ({ requestID }) => {
         <div>
           {documents && documents.length > 0 && documents.map((document, index) => (
     <div className='fill' key={index}>
-        <a href={`data:application/pdf;base64,${document.file}`} download={`document_${index}.pdf`}>Download Document {index + 1}</a>
+        <a href={`data:application/pdf;base64,${document.file}`} download={`document_${index}.pdf`}>Download Document {document.file_name}</a>
     </div>
 ))}
 

@@ -16,7 +16,7 @@ const QuestionDetails = () => {
       const fetchData = async () => {
           try {
               // Fetch question details
-              const questionResponse = await fetch(`http://localhost/avocatConnect/avocatConnect/src/getQuestion.php?id=${id}`);
+              const questionResponse = await fetch(`https://avocatconnect.000webhostapp.com/getQuestion.php?id=${id}`);
               const questionData = await questionResponse.json();
 
               if (!questionResponse.ok || !questionData.success) {
@@ -30,7 +30,7 @@ const QuestionDetails = () => {
               formData.append('forumID', id);
        // Use lawyerID as userID
 
-              const commentsResponse = await fetch('http://localhost/avocatConnect/avocatConnect/src/comments.php', {
+              const commentsResponse = await fetch('https://avocatconnect.000webhostapp.com/comments.php', {
                   method: 'POST',
                   body: formData,
               });

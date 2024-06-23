@@ -11,7 +11,7 @@ const Reunions = () => {
             const formData = new FormData();
             formData.append('clientID', sessionStorage.getItem('clientId'));
 
-            const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/requestresult.php', {
+            const response = await fetch('http://41.111.198.131/avicatconnect//requestresult.php', {
                 method: 'POST',
                 body: formData,
             });
@@ -34,10 +34,10 @@ const Reunions = () => {
         <React.Fragment>
             <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
             <h2 className="mb-4 text-2xl font-semibold leading-tight">Reunions</h2>
-            <div className="container p-2 mx-auto sm:p-4 text-gray-800">
+            <div className="container p-2 mx-auto sm:p-4 text-gray-900 min-w-[900px]" style={{padding:"10PX"}}>
                 {reunions.length > 0 && ( // Render the table only when there are reunions
-                    <div className="overflow-x-auto">
-                        <table className="w-full p-6 text-xs text-left whitespace-nowrap">
+                    <div className="overflow-x-auto"style={{ minWidth: '900px' ,fontSize:"18px"}}>
+<table className="w-full table-auto min-w-[700px] p-7 text-xs text-left whitespace-nowrap"style={{ minWidth: '700px',fontSize:"17px" }}>
                             <colgroup>
                                 <col className="w-5" />
                                 <col />
@@ -48,7 +48,7 @@ const Reunions = () => {
                                 <col className="w-5" />
                             </colgroup>
                             <thead>
-                                <tr className="bg-gray-300" style={{ backgroundColor: "#679186", color: "white" }}>
+                                <tr className="bg-gray-800" style={{ backgroundColor: "#679186", color: "white" }}>
                                     <th className="p-3">A-Z</th>
                                     <th className="p-3">pfp</th>
                                     <th className="p-3">lawyer</th>

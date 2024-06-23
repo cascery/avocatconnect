@@ -18,7 +18,7 @@ const RequestsTab = () => {
             const formData = new FormData();
             formData.append('lawyerId', lawyerId);
 
-            const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/request.php', {
+            const response = await fetch('https://avocatconnect.000webhostapp.com/request.php', {
                 method: 'POST',
                 body: formData,
             });
@@ -129,7 +129,7 @@ const RequestsTab = () => {
               </div>
             </div>
           </div>  ) : (
-                    <p>Loading...</p>
+                    <p>no requests found...</p>
                 )}
         </div>
         <div className="flex flex-wrap -mx-3 mb-5">

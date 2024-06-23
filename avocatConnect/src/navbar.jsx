@@ -24,7 +24,7 @@ function Navbar() {
     const formData = new FormData();
     formData.append('lawyerId', lawyerId); // Add session ID to FormData
 
-    fetch('http://localhost/avocatConnect/avocatConnect/src/navbar.php', {
+    fetch('https://avocatconnect.000webhostapp.com/navbar.php', {
       method: 'POST', // Adjust method as needed
       body: formData,
     })

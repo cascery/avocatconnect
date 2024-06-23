@@ -331,3 +331,33 @@ width: 40px;
 }
 
 
+.notification-btn-tooltip {
+  visibility: hidden;
+  width: auto;
+  background-color: #90b8ad;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 14px;
+  position: absolute;
+  top: calc(100% + 5px);
+  right: calc(100% + 20px); /* Adjust the distance between the button and the tooltip */
+  /* Adjust the distance between the button and the tooltip */
+  left:0;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 12 px;
+  line-height: 1.09375em;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.notification-btn:hover .notification-btn-tooltip {
+  visibility: visible;
+  opacity: 1;
+
+}
+
+
+

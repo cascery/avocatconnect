@@ -3,10 +3,10 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'connectlawyers';
+$servername = "41.111.198.131";
+$username = "lega";
+$password = "e23kEJrE";
+$dbname = "lega";
 
 $conn = new mysqli($host, $username, $password, $database);
 
@@ -20,13 +20,15 @@ if (empty($userId)) {
 }
 
 // Retrieve service requests for the lawyer along with client details
+//AND sr.status != 'accepted'
 $query = "SELECT sr.serviceRequestID, sr.clientID, sr.serviceID, sr.status, sr.content, sr.Request_Date, 
 u.name AS clientName, u.lastname AS clientLastName, u.userID AS clientUserID
 FROM servicerequest sr
 INNER JOIN client c ON sr.clientID = c.clientID
 INNER JOIN user u ON c.userID = u.userID
-WHERE sr.lawyerID = (SELECT lawyerID FROM lawyer WHERE userID = $userId) AND sr.status != 'accepted';
-";
+WHERE sr.lawyerID = (SELECT id FROM lawyer WHERE userID = '$userId') ";
+
+
 $result = $conn->query($query);
 
 if ($result && $result->num_rows > 0) {

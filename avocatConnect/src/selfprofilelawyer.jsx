@@ -26,7 +26,7 @@ const SelfProfileLawyer = () => {
         }
         const formData = new FormData();
         formData.append('lawyerId', userId); 
-        fetch('http://localhost/avocatConnect/avocatConnect/src/selfprofilelawyer.php', {
+        fetch('https://avocatconnect.000webhostapp.com/selfprofilelawyer.php', {
             method: 'POST',
             body: formData,
         })
@@ -56,10 +56,16 @@ const SelfProfileLawyer = () => {
        
   <div className="card__header">
     <div className="card__profile">
-    <img
- src={`data:${profileData.profilePic}`} 
- alt={emptypfp} 
+    {profileData.profilePic ? (
+  <img
+    src={profileData.profilePic}
+    alt={emptypfp}
+  />
+) : (
+  <img
+  src={emptypfp}
 />
+)}
 
     </div>
     <div className="card__name">
@@ -116,9 +122,9 @@ const SelfProfileLawyer = () => {
     <div className='cardinforma'>
 
 
- <h6> <i className="fas fa-graduation-cap"></i> education:11 years.</h6> 
+ <h6> <i className="fas fa-graduation-cap"></i> phone:{profileData.phone}.</h6> 
  <h6> <i className="fas fa-map-marker-alt"></i> wilaya:{profileData.wilaya}.</h6> 
- <h6> <i className="fas fa-circle green"></i> active :yes.</h6> 
+ <h6> <i className="fas fa-circle green"></i> email :{profileData.email}</h6> 
 
    </div>
    

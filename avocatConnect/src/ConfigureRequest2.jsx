@@ -36,7 +36,7 @@ const ConfigureRequest = () => {
                 }
                 formData.append('lawyerId', lawyerId); // Append lawyerId to the form data
 
-                const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/ConfigureRequest.php', {
+                const response = await fetch('https://avocatconnect.000webhostapp.com/ConfigureRequest.php', {
                     method: 'POST',
                     body: formData,
                 });

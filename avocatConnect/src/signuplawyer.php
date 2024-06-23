@@ -2,11 +2,10 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'connectlawyers';
-
+$servername = "41.111.198.131";
+$username = "lega";
+$password = "e23kEJrE";
+$dbname = "lega";
 $conn = new mysqli($host, $username, $password, $database);
 
 if ($conn->connect_error) {
@@ -47,6 +46,7 @@ $query = "INSERT INTO user (name, lastname, birthday, email, tel, username, pass
 
 if ($conn->query($query) === TRUE) {
     $userID = $conn->insert_id; 
+  
 
     $query = "INSERT INTO lawyer (userID, specialite, years, education)
               VALUES ('$userID', '$specialityID', '$years', '$education')";

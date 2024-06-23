@@ -29,7 +29,7 @@ const AskingPlace = () => {
       formData.append('content', content);
       formData.append('userID', userID);
 
-      const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/askingplace.php', {
+      const response = await fetch('https://avocatconnect.000webhostapp.com/askingplace.php', {
         method: 'POST',
         body: formData,
       });

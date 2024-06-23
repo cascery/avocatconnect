@@ -22,7 +22,7 @@ const PostAnn = () => {
             formData.append('description', description);
             formData.append('lawyerId', sessionStorage.getItem('lawyerId'));
 
-            const response = await fetch('http://localhost/avocatConnect/avocatConnect/src/Postann.php', {
+            const response = await fetch('https://avocatconnect.000webhostapp.com/Postann.php', {
                 method: 'POST',
                 body: formData,
             });

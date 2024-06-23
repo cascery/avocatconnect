@@ -23,7 +23,7 @@ const Announcements = ({ userId }) => {
         }
         const formData = new FormData();
         formData.append('userId', userId);
-        fetch('http://localhost/avocatConnect/avocatConnect/src/announcements.php', {
+        fetch('https://avocatconnect.000webhostapp.com/announcements.php', {
             method: 'POST',
             body: formData,
         })
